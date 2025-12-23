@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lamplit Path - Discover Your Spiritual Type</title>
+    <meta name="description" content="Discover your unique spiritual type through our biblical personality assessment. Receive personalized daily devotionals that speak to how you uniquely connect with God.">
+    <meta name="keywords" content="spiritual type, biblical personality, devotional app, faith journey, Christian app, spiritual growth">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Lamplit Path - Discover Your Spiritual Type">
+    <meta property="og:description" content="Find the scripture that speaks to you. Discover your biblical personality type and receive personalized daily devotionals.">
+    <meta property="og:image" content="assets/images/app-icon.png">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/app-icon.png">
+
+    <style>
+        :root {
+            --lamplit-gold: #E5A84B;
+            --lamplit-gold-light: #F5D89A;
+            --warm-cream: #FBF7F0;
+            --deep-charcoal: #1A1816;
+            --soft-amber: #C98B2F;
+            --muted-sage: #7A8B6E;
+            --dusty-rose: #B8A295;
+            --deep-purple: #4A3B5C;
+            --ethereal-blue: #6B8EC9;
+
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--deep-charcoal);
+            background: var(--warm-cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(251, 247, 240, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229, 168, 75, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--deep-charcoal);
+        }
+
+        .nav-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+        }
+
+        .nav-logo span {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--deep-charcoal);
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .nav-cta {
+            background: var(--lamplit-gold);
+            color: white !important;
+            padding: 0.6rem 1.25rem;
+            border-radius: 100px;
+            opacity: 1 !important;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(229, 168, 75, 0.4);
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('assets/images/cosmic-bg.png') center/cover;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .hero-lamp {
+            width: 180px;
+            height: auto;
+            margin-bottom: 2rem;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 40px rgba(229, 168, 75, 0.3));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--lamplit-gold);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--lamplit-gold);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            max-width: 600px;
+            color: #555;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .app-store-badge {
+            height: 54px;
+            transition: transform 0.2s;
+        }
+
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-note {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* ========== SECTION STYLES ========== */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--lamplit-gold);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ========== PROBLEM/SOLUTION ========== */
+        .problem-solution {
+            background: linear-gradient(180deg, var(--warm-cream) 0%, #F5F0E8 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .problem-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-charcoal);
+        }
+
+        .problem-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .problem-card.highlight {
+            background: linear-gradient(135deg, var(--lamplit-gold) 0%, var(--soft-amber) 100%);
+            color: white;
+        }
+
+        .problem-card.highlight h3,
+        .problem-card.highlight p {
+            color: white;
+        }
+
+        /* ========== HOW IT WORKS ========== */
+        .how-it-works {
+            background: white;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--lamplit-gold-light) 0%, var(--lamplit-gold) 100%);
+            color: white;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 25px rgba(229, 168, 75, 0.3);
+        }
+
+        .step h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ========== TYPES SHOWCASE ========== */
+        .types-section {
+            background: linear-gradient(180deg, #F5F0E8 0%, var(--warm-cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .types-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('assets/images/ethereal-bg.png') center/cover;
+            opacity: 0.08;
+            z-index: 0;
+        }
+
+        .types-section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .type-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .type-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(229, 168, 75, 0.15);
+        }
+
+        .type-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .type-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--deep-charcoal);
+            margin-bottom: 0.25rem;
+        }
+
+        .type-card p {
+            font-size: 0.8rem;
+            color: var(--lamplit-gold);
+            font-weight: 500;
+        }
+
+        .types-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .types-cta p {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* ========== FEATURES ========== */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-radius: 20px;
+            background: var(--warm-cream);
+            border: 1px solid rgba(229, 168, 75, 0.1);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--lamplit-gold-light) 0%, var(--lamplit-gold) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ========== TESTIMONIAL/QUOTE ========== */
+        .quote-section {
+            background: linear-gradient(135deg, var(--deep-purple) 0%, #3A2D47 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('assets/images/cosmic-bg.png') center/cover;
+            opacity: 0.3;
+        }
+
+        .quote-section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quote-content blockquote {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-content cite {
+            font-style: normal;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* ========== PHILOSOPHY ========== */
+        .philosophy {
+            background: var(--warm-cream);
+        }
+
+        .philosophy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .philosophy-text h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .philosophy-text h3 em {
+            color: var(--lamplit-gold);
+            font-style: italic;
+        }
+
+        .philosophy-text p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .philosophy-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .philosophy-image img {
+            max-width: 300px;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+        }
+
+        /* ========== FINAL CTA ========== */
+        .final-cta {
+            background: linear-gradient(135deg, var(--lamplit-gold) 0%, var(--soft-amber) 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .final-cta .section-title {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: white;
+            color: var(--lamplit-gold);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--deep-charcoal);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand img {
+            width: 50px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            color: var(--lamplit-gold);
+        }
+
+        .footer-links a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .philosophy-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .philosophy-image {
+                order: -1;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-brand {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .hero-lamp {
+                width: 140px;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand {
+                grid-column: auto;
+            }
+
+            .footer-brand p {
+                max-width: none;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">
+            <img src="assets/images/app-icon.png" alt="Lamplit Path">
+            <span>Lamplit Path</span>
+        </a>
+        <div class="nav-links">
+            <a href="#how-it-works">How It Works</a>
+            <a href="#types">The 12 Types</a>
+            <a href="#features">Features</a>
+            <a href="#download" class="nav-cta">Download</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <img src="assets/images/hero-lamp.png" alt="Lamplit Path" class="hero-lamp">
+        <p class="hero-tagline">Discover Your Spiritual Type</p>
+        <h1>Find the scripture that <em>speaks to you</em></h1>
+        <p class="hero-subtitle">
+            Uncover your unique spiritual personality through our biblically-grounded assessment,
+            then receive daily devotionals crafted for how you actually experience faith.
+        </p>
+        <div class="hero-cta">
+            <a href="#download">
+                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store" class="app-store-badge">
+            </a>
+            <p class="hero-note">Free to start. No account required.</p>
+        </div>
+    </section>
+
+    <!-- Problem/Solution -->
+    <section class="problem-solution">
+        <div class="section-header">
+            <p class="section-label">The Challenge</p>
+            <h2 class="section-title">Scripture is a gift. But it can feel overwhelming.</h2>
+            <p class="section-subtitle">
+                You want to grow spiritually, but generic devotionals don't resonate.
+                You've tried apps that feel cold, preachy, or guilt-inducing.
+                You're looking for something that actually gets you.
+            </p>
+        </div>
+
+        <div class="problem-grid">
+            <div class="problem-card">
+                <h3>"Where do I even start?"</h3>
+                <p>The Bible has 66 books. Without guidance, it's easy to feel lost in a sea of ancient text that doesn't seem to connect to your daily life.</p>
+            </div>
+            <div class="problem-card">
+                <h3>"This doesn't speak to me"</h3>
+                <p>Generic one-size-fits-all devotionals miss the mark. What resonates with one person falls flat for another. Your spiritual wiring is unique.</p>
+            </div>
+            <div class="problem-card highlight">
+                <h3>There's a better way</h3>
+                <p>Imagine knowing your spiritual personality type. Scripture passages that align with how you think, feel, and connect. Daily content that feels like it was written just for you.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <p class="section-label">Your Journey</p>
+            <h2 class="section-title">Three steps to spiritual clarity</h2>
+            <p class="section-subtitle">
+                A thoughtful process designed to meet you where you are and guide you forward.
+            </p>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Take the Assessment</h3>
+                <p>Answer 50 reflective questions that explore how you connect with God and express your faith. No right or wrong answers&mdash;just you.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Discover Your Type</h3>
+                <p>Receive your spiritual personality type with a connection to a biblical figure who shares your spiritual wiring. Finally feel seen.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Grow Daily</h3>
+                <p>Wake up to personalized devotionals matched to your type and current mood. Scripture that actually speaks to your heart.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types Showcase -->
+    <section class="types-section" id="types">
+        <div class="section-header">
+            <p class="section-label">The Framework</p>
+            <h2 class="section-title">12 Spiritual Types, Rooted in Scripture</h2>
+            <p class="section-subtitle">
+                Each type reflects a unique way of connecting with God, expressed through the lives of biblical figures who walked before us.
+            </p>
+        </div>
+
+        <div class="types-grid">
+            <div class="type-card">
+                <img src="assets/types/shepherd.png" alt="The Shepherd">
+                <h4>The Shepherd</h4>
+                <p>Devoted + Relational</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/sage.png" alt="The Sage">
+                <h4>The Sage</h4>
+                <p>Devoted + Contemplative</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/pioneer.png" alt="The Pioneer">
+                <h4>The Pioneer</h4>
+                <p>Becoming + Active</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/guardian.png" alt="The Guardian">
+                <h4>The Guardian</h4>
+                <p>Connected + Protective</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/artisan.png" alt="The Artisan">
+                <h4>The Artisan</h4>
+                <p>Devoted + Active</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/prophet.png" alt="The Prophet">
+                <h4>The Prophet</h4>
+                <p>Devoted + Protective</p>
+            </div>
+        </div>
+
+        <div class="types-cta">
+            <p>...and 6 more types waiting to be discovered.</p>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="quote-content">
+            <blockquote>
+                "Your word is a lamp for my feet, a light on my path."
+            </blockquote>
+            <cite>Psalm 119:105</cite>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <p class="section-label">What You Get</p>
+            <h2 class="section-title">Designed for your spiritual journey</h2>
+            <p class="section-subtitle">
+                Every feature built with intention, grace, and respect for where you are in your faith.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#x2728;</div>
+                <h3>Personalized Devotionals</h3>
+                <p>Daily content matched to your spiritual type and current mood. Scripture that resonates because it's chosen for you.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#x1F56F;</div>
+                <h3>Biblical Figure Connection</h3>
+                <p>Discover which biblical figures share your spiritual personality. See yourself reflected in their stories.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#x1F4D6;</div>
+                <h3>Reflective Journaling</h3>
+                <p>Capture your thoughts and spiritual insights. Your private space for growth and reflection.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#x1F338;</div>
+                <h3>Grace, Not Guilt</h3>
+                <p>No streaks. No shame. We celebrate your return without dwelling on absence. Take breaks. Come back. You're welcome here.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#x1F512;</div>
+                <h3>Privacy-First</h3>
+                <p>Your spiritual journey is personal. Journal entries stay on your device. We never sell your data. Ever.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#x2B50;</div>
+                <h3>Beautiful Experience</h3>
+                <p>Thoughtfully designed with warm, inviting visuals. An app that feels as peaceful as the moments it creates.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="philosophy">
+        <div class="philosophy-content">
+            <div class="philosophy-text">
+                <h3>Built on a philosophy of <em>celebrate without nag</em></h3>
+                <p>
+                    Most apps want you addicted. We want you nourished. Lamplit Path is designed
+                    around grace&mdash;the same grace at the heart of Scripture itself.
+                </p>
+                <p>
+                    There are no guilt-inducing streak counters. No push notifications shaming you
+                    for missing a day. When you return after time away, we simply welcome you back warmly.
+                </p>
+                <p>
+                    Your spiritual growth happens on your timeline, in your way. We're just here to
+                    illuminate the path when you're ready to walk it.
+                </p>
+            </div>
+            <div class="philosophy-image">
+                <img src="assets/images/onboarding-lamp.png" alt="Lamplit Path">
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="download">
+        <h2 class="section-title">Ready to discover your spiritual type?</h2>
+        <p class="section-subtitle">
+            Join thousands finding deeper connection through personalized scripture.
+            Free to start&mdash;no account required.
+        </p>
+        <a href="#" class="cta-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            Download for iOS
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="assets/images/app-icon.png" alt="Lamplit Path">
+                <p>
+                    Lamplit Path helps you discover your spiritual type and grow daily through
+                    personalized, biblically-grounded devotional content.
+                </p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#types">The 12 Types</a>
+                <a href="#features">Features</a>
+                <a href="#download">Download</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+                <a href="mailto:hello@lamplitpath.com">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Lamplit Path. All rights reserved.</p>
+            <p>ABN: 12 273 187 245 | Melbourne, Australia</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.problem-card, .step, .type-card, .feature-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
