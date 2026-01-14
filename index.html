@@ -506,8 +506,12 @@
         .type-card img {
             width: 80px;
             height: 80px;
-            object-fit: contain;
+            object-fit: cover;
             margin-bottom: 0.75rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--lamplit-gold-light) 0%, var(--lamplit-gold) 100%);
+            padding: 3px;
+            box-shadow: 0 4px 15px rgba(229, 168, 75, 0.2);
         }
 
         .type-card h4 {
@@ -1013,6 +1017,7 @@
             .type-card img {
                 width: 60px;
                 height: 60px;
+                border-radius: 50%;
             }
 
             .footer-content {
@@ -1338,32 +1343,65 @@
 
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">&#x2728;</div>
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </div>
                 <h3>504 Personalized Devotionals</h3>
                 <p>Not templates or variations&mdash;genuinely distinct content for every combination of type, life season, and emotional state. Scripture that resonates because it's chosen for you.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">&#x1F56F;</div>
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2C12 2 10 6 10 9C10 11 12 12 12 12C12 12 14 11 14 9C14 6 12 2 12 2Z"/>
+                        <path d="M12 12V22"/>
+                        <path d="M8 22H16"/>
+                        <circle cx="12" cy="9" r="1" fill="white"/>
+                    </svg>
+                </div>
                 <h3>Biblical Figure Connection</h3>
                 <p>Discover which biblical figure shares your spiritual personality. See yourself reflected in their stories. Your type becomes a lens for reading Scripture.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">&#x1F4D6;</div>
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        <line x1="8" y1="7" x2="16" y2="7"/>
+                        <line x1="8" y1="11" x2="14" y2="11"/>
+                    </svg>
+                </div>
                 <h3>Reflective Journaling</h3>
                 <p>Capture your thoughts and spiritual insights in a completely private space. Your entries stay on your device&mdash;never synced, never analyzed, never seen by anyone but you.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">&#x1F338;</div>
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
                 <h3>Grace, Not Guilt</h3>
                 <p>No streaks. No shame. We celebrate your return without dwelling on absence. Take breaks. Come back. You're welcome here. Always.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">&#x1F512;</div>
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        <circle cx="12" cy="16" r="1" fill="white"/>
+                    </svg>
+                </div>
                 <h3>Privacy-First</h3>
                 <p>Your spiritual journey is between you and God. Journal entries never leave your device. We handle religious data with the care it deserves.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">&#x2B50;</div>
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
                 <h3>Beautiful Experience</h3>
                 <p>Thoughtfully designed with warm, inviting visuals. An app that feels as peaceful as the moments it creates. Works offline too.</p>
             </div>
@@ -1399,15 +1437,15 @@
                         <h4>Your Spiritual Profile</h4>
                         <p class="preview-subtitle">Personalized Report</p>
                         <ul class="preview-toc">
-                            <li><span class="toc-icon">&#x1F4DC;</span> Personal Letter to You</li>
-                            <li><span class="toc-icon">&#x1F50D;</span> Deep Type Interpretation</li>
-                            <li><span class="toc-icon">&#x1F4D6;</span> Biblical Figure Connection</li>
-                            <li><span class="toc-icon">&#x1F4CA;</span> Dimensional Profile</li>
-                            <li><span class="toc-icon">&#x1F64F;</span> 5 Spiritual Practices</li>
-                            <li><span class="toc-icon">&#x1F331;</span> 3 Growth Pathways</li>
-                            <li><span class="toc-icon">&#x26A0;</span> Shadow Patterns</li>
-                            <li><span class="toc-icon">&#x1F4D6;</span> Scripture for Your Type</li>
-                            <li><span class="toc-icon">&#x1F381;</span> Spiritual Gifts Inventory</li>
+                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span> Personal Letter to You</li>
+                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></span> Deep Type Interpretation</li>
+                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> Biblical Figure Connection</li>
+                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></span> Dimensional Profile</li>
+                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M12 2C12 2 8 6 8 10a4 4 0 0 0 8 0c0-4-4-8-4-8z"/><path d="M12 14v8"/><path d="M8 22h8"/></svg></span> 5 Spiritual Practices</li>
+                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg></span> 3 Growth Pathways</li>
+                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg></span> Shadow Patterns</li>
+                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> Scripture for Your Type</li>
+                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg></span> Spiritual Gifts Inventory</li>
                         </ul>
                     </div>
                 </div>
@@ -1415,47 +1453,104 @@
 
             <div class="report-features-grid">
                 <div class="report-feature">
-                    <div class="report-feature-icon">&#x1F4DC;</div>
+                    <div class="report-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <path d="M14 2v6h6"/>
+                            <path d="M16 13H8"/>
+                            <path d="M16 17H8"/>
+                        </svg>
+                    </div>
                     <h4>Personal Letter</h4>
                     <p>A warm, personalized welcome that speaks directly to your type&mdash;acknowledging your unique gifts and the journey ahead.</p>
                 </div>
                 <div class="report-feature">
-                    <div class="report-feature-icon">&#x1F50D;</div>
+                    <div class="report-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                    </div>
                     <h4>Deep Type Analysis</h4>
                     <p>A comprehensive exploration of your spiritual personality&mdash;how it shapes your prayer life, your relationships, and your growth.</p>
                 </div>
                 <div class="report-feature">
-                    <div class="report-feature-icon">&#x1F3A8;</div>
+                    <div class="report-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
                     <h4>Biblical Companion</h4>
                     <p>Meet the scriptural figure who shares your wiring. Their story becomes a mirror for understanding your own spiritual journey.</p>
                 </div>
                 <div class="report-feature">
-                    <div class="report-feature-icon">&#x1F64F;</div>
+                    <div class="report-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2C12 2 8 6 8 10a4 4 0 0 0 8 0c0-4-4-8-4-8z"/>
+                            <path d="M12 14v8"/>
+                            <path d="M8 22h8"/>
+                        </svg>
+                    </div>
                     <h4>Tailored Practices</h4>
                     <p>Five spiritual practices designed specifically for your type&mdash;not generic suggestions, but practices that fit how God made you.</p>
                 </div>
                 <div class="report-feature">
-                    <div class="report-feature-icon">&#x1F331;</div>
+                    <div class="report-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v4"/>
+                            <path d="M12 18v4"/>
+                            <path d="M4.93 4.93l2.83 2.83"/>
+                            <path d="M16.24 16.24l2.83 2.83"/>
+                            <path d="M2 12h4"/>
+                            <path d="M18 12h4"/>
+                            <path d="M4.93 19.07l2.83-2.83"/>
+                            <path d="M16.24 7.76l2.83-2.83"/>
+                        </svg>
+                    </div>
                     <h4>Growth Pathways</h4>
                     <p>Three specific growth opportunities with concrete action steps. Know exactly where to focus your spiritual development.</p>
                 </div>
                 <div class="report-feature">
-                    <div class="report-feature-icon">&#x26A0;</div>
+                    <div class="report-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 9v4"/>
+                            <path d="M12 17h.01"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+                    </div>
                     <h4>Shadow Awareness</h4>
                     <p>Understand the patterns that emerge when your type is under stress&mdash;and the healthy alternatives that lead back to wholeness.</p>
                 </div>
                 <div class="report-feature">
-                    <div class="report-feature-icon">&#x1F4D6;</div>
+                    <div class="report-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                    </div>
                     <h4>Scripture Selection</h4>
                     <p>Five passages chosen specifically for your orientation and expression&mdash;Scripture that will speak to your soul.</p>
                 </div>
                 <div class="report-feature">
-                    <div class="report-feature-icon">&#x1F381;</div>
+                    <div class="report-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                        </svg>
+                    </div>
                     <h4>Gifts Inventory</h4>
                     <p>Discover your primary spiritual gifts, developing gifts, and stretch gifts&mdash;a complete picture of how you serve the Body.</p>
                 </div>
                 <div class="report-feature">
-                    <div class="report-feature-icon">&#x1F4E5;</div>
+                    <div class="report-feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                    </div>
                     <h4>Downloadable PDF</h4>
                     <p>A beautifully designed 15-20 page document you can save, print, and share with your small group, spouse, or spiritual director.</p>
                 </div>
