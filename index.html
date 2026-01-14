@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lamplit Path - Discover Your Spiritual Type</title>
-    <meta name="description" content="Discover your unique spiritual type through our biblical personality assessment. Receive personalized daily devotionals that speak to how you uniquely connect with God.">
-    <meta name="keywords" content="spiritual type, biblical personality, devotional app, faith journey, Christian app, spiritual growth">
+    <meta name="description" content="Discover your unique spiritual type through our biblically-grounded 12-type framework. Receive personalized daily devotionals that speak to how you uniquely connect with God.">
+    <meta name="keywords" content="spiritual type, biblical personality, devotional app, faith journey, Christian app, spiritual growth, spiritual personality">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Lamplit Path - Discover Your Spiritual Type">
-    <meta property="og:description" content="Find the scripture that speaks to you. Discover your biblical personality type and receive personalized daily devotionals.">
+    <meta property="og:description" content="Find the scripture that speaks to you. Discover your biblical personality type through our original 12-type framework and receive personalized daily devotionals.">
     <meta property="og:image" content="assets/images/app-icon.png">
     <meta property="og:type" content="website">
 
@@ -346,9 +346,119 @@
             line-height: 1.7;
         }
 
+        /* ========== FRAMEWORK SECTION ========== */
+        .framework-section {
+            background: linear-gradient(180deg, #F5F0E8 0%, white 100%);
+            position: relative;
+        }
+
+        .framework-intro {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .framework-intro p {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .framework-intro p.emphasis {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--deep-charcoal);
+        }
+
+        .dimensions-container {
+            max-width: 1100px;
+            margin: 0 auto 4rem;
+        }
+
+        .dimension-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .dimension-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(229, 168, 75, 0.1);
+        }
+
+        .dimension-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: var(--lamplit-gold);
+        }
+
+        .dimension-card .dimension-subtitle {
+            font-size: 0.95rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .dimension-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .dimension-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .dimension-item h4 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--deep-charcoal);
+            margin-bottom: 0.25rem;
+        }
+
+        .dimension-item p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .dimension-item .scripture {
+            font-style: italic;
+            color: var(--soft-amber);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .framework-statement {
+            background: linear-gradient(135deg, var(--deep-purple) 0%, #3A2D47 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .framework-statement h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .framework-statement p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
         /* ========== TYPES SHOWCASE ========== */
         .types-section {
-            background: linear-gradient(180deg, #F5F0E8 0%, var(--warm-cream) 100%);
+            background: linear-gradient(180deg, white 0%, #F5F0E8 50%, var(--warm-cream) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -372,9 +482,9 @@
 
         .types-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -394,35 +504,29 @@
         }
 
         .type-card img {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             object-fit: contain;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .type-card h4 {
             font-family: var(--font-display);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--deep-charcoal);
             margin-bottom: 0.25rem;
         }
 
-        .type-card p {
-            font-size: 0.8rem;
+        .type-card .type-figure {
+            font-size: 0.85rem;
             color: var(--lamplit-gold);
-            font-weight: 500;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
         }
 
-        .types-cta {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .types-cta p {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-style: italic;
-            color: #666;
+        .type-card .type-dimensions {
+            font-size: 0.75rem;
+            color: #888;
         }
 
         /* ========== FEATURES ========== */
@@ -467,6 +571,199 @@
             color: #666;
             font-size: 0.95rem;
             line-height: 1.7;
+        }
+
+        /* ========== PREMIUM REPORT ========== */
+        .report-section {
+            background: linear-gradient(180deg, #F5F0E8 0%, var(--warm-cream) 100%);
+            position: relative;
+        }
+
+        .report-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .report-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .report-hero-text h3 {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .report-hero-text h3 em {
+            color: var(--lamplit-gold);
+            font-style: italic;
+        }
+
+        .report-hero-text .report-tagline {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .report-price-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(229, 168, 75, 0.2);
+        }
+
+        .report-price {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--lamplit-gold);
+        }
+
+        .report-price-note {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .report-preview {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .report-preview-mockup {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            transform: rotate(2deg);
+            max-width: 320px;
+        }
+
+        .report-preview-mockup h4 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--deep-purple);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .report-preview-mockup .preview-subtitle {
+            font-size: 0.85rem;
+            color: var(--lamplit-gold);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-toc {
+            list-style: none;
+        }
+
+        .preview-toc li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 0.85rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .preview-toc li:last-child {
+            border-bottom: none;
+        }
+
+        .preview-toc .toc-icon {
+            width: 20px;
+            text-align: center;
+        }
+
+        .report-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .report-feature {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(229, 168, 75, 0.1);
+        }
+
+        .report-feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--deep-purple) 0%, #3A2D47 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+        }
+
+        .report-feature h4 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--deep-charcoal);
+        }
+
+        .report-feature p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .report-cta-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .report-cta-container p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .report-hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .report-preview {
+                order: -1;
+            }
+
+            .report-preview-mockup {
+                transform: none;
+            }
+
+            .report-price-card {
+                justify-content: center;
+            }
+
+            .report-features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .report-features-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* ========== TESTIMONIAL/QUOTE ========== */
@@ -654,6 +951,12 @@
         }
 
         /* ========== RESPONSIVE ========== */
+        @media (max-width: 1000px) {
+            .types-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         @media (max-width: 900px) {
             .philosophy-content {
                 grid-template-columns: 1fr;
@@ -670,6 +973,10 @@
 
             .footer-brand {
                 grid-column: span 2;
+            }
+
+            .dimension-row {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -692,6 +999,20 @@
 
             section {
                 padding: 4rem 1.5rem;
+            }
+
+            .types-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .type-card {
+                padding: 1rem;
+            }
+
+            .type-card img {
+                width: 60px;
+                height: 60px;
             }
 
             .footer-content {
@@ -745,8 +1066,9 @@
         </a>
         <div class="nav-links">
             <a href="#how-it-works">How It Works</a>
+            <a href="#framework">The Framework</a>
             <a href="#types">The 12 Types</a>
-            <a href="#features">Features</a>
+            <a href="#report">Premium Report</a>
             <a href="#download" class="nav-cta">Download</a>
         </div>
     </nav>
@@ -754,11 +1076,11 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <img src="assets/images/hero-lamp.png" alt="Lamplit Path" class="hero-lamp">
-        <p class="hero-tagline">Discover Your Spiritual Type</p>
+        <p class="hero-tagline">Discover Your Spiritual Personality</p>
         <h1>Find the scripture that <em>speaks to you</em></h1>
         <p class="hero-subtitle">
-            Uncover your unique spiritual personality through our biblically-grounded assessment,
-            then receive daily devotionals crafted for how you actually experience faith.
+            Uncover your unique spiritual personality through our original 12-type framework,
+            then receive daily devotionals crafted for how God designed you to connect with Him.
         </p>
         <div class="hero-cta">
             <a href="#download">
@@ -772,7 +1094,7 @@
     <section class="problem-solution">
         <div class="section-header">
             <p class="section-label">The Challenge</p>
-            <h2 class="section-title">Scripture is a gift. But it can feel overwhelming.</h2>
+            <h2 class="section-title">Your faith is personal. Why isn't your spiritual content?</h2>
             <p class="section-subtitle">
                 You want to grow spiritually, but generic devotionals don't resonate.
                 You've tried apps that feel cold, preachy, or guilt-inducing.
@@ -782,16 +1104,16 @@
 
         <div class="problem-grid">
             <div class="problem-card">
-                <h3>"Where do I even start?"</h3>
-                <p>The Bible has 66 books. Without guidance, it's easy to feel lost in a sea of ancient text that doesn't seem to connect to your daily life.</p>
+                <h3>"Why does this feel hollow?"</h3>
+                <p>Certain spiritual practices feel like coming home&mdash;while others feel like wearing someone else's clothes. You're not doing faith wrong. You're doing faith as God designed you.</p>
             </div>
             <div class="problem-card">
-                <h3>"This doesn't speak to me"</h3>
-                <p>Generic one-size-fits-all devotionals miss the mark. What resonates with one person falls flat for another. Your spiritual wiring is unique.</p>
+                <h3>"This wasn't written for me"</h3>
+                <p>Generic one-size-fits-all devotionals miss the mark. What resonates with one person falls flat for another. Your spiritual wiring is unique&mdash;your content should be too.</p>
             </div>
             <div class="problem-card highlight">
                 <h3>There's a better way</h3>
-                <p>Imagine knowing your spiritual personality type. Scripture passages that align with how you think, feel, and connect. Daily content that feels like it was written just for you.</p>
+                <p>Imagine knowing your spiritual personality type&mdash;and meeting a biblical figure who shares your wiring. Daily content that speaks directly to how God made you.</p>
             </div>
         </div>
     </section>
@@ -815,61 +1137,182 @@
             <div class="step">
                 <div class="step-number">2</div>
                 <h3>Discover Your Type</h3>
-                <p>Receive your spiritual personality type with a connection to a biblical figure who shares your spiritual wiring. Finally feel seen.</p>
+                <p>Receive your spiritual personality type and meet the biblical figure who shares your spiritual wiring. Finally understand why you connect with God the way you do.</p>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
                 <h3>Grow Daily</h3>
-                <p>Wake up to personalized devotionals matched to your type and current mood. Scripture that actually speaks to your heart.</p>
+                <p>Wake up to personalized devotionals matched to your type and current mood. Scripture, reflection, and prayer crafted for how God designed you.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- The Framework -->
+    <section class="framework-section" id="framework">
+        <div class="section-header">
+            <p class="section-label">The Foundation</p>
+            <h2 class="section-title">A Framework Born From Scripture</h2>
+            <p class="section-subtitle">
+                The Lamplit 12-Type Framework wasn't adapted from secular categories. It was built by studying Scripture itself.
+            </p>
+        </div>
+
+        <div class="framework-intro">
+            <p>
+                We observed how different personalities have always expressed faith&mdash;from the builders and prophets of the Old Testament to the teachers and companions of the early church. What emerged was a pattern visible across the biblical narrative: a pattern that illuminates how God, in His creativity, designed different people to know Him in different ways.
+            </p>
+            <p class="emphasis">
+                You're not an anomaly. You're part of a pattern as old as faith itself.
+            </p>
+        </div>
+
+        <div class="dimensions-container">
+            <div class="dimension-row">
+                <div class="dimension-card">
+                    <h3>Orientation</h3>
+                    <p class="dimension-subtitle">The direction of your spiritual heart</p>
+
+                    <div class="dimension-item">
+                        <h4>Devoted</h4>
+                        <p>Your spiritual center is your personal relationship with God. You're drawn to worship, prayer, and direct communion with the divine.</p>
+                        <p class="scripture">"Love the Lord your God with all your heart, with all your soul, and with all your mind." &mdash; Matthew 22:37</p>
+                    </div>
+
+                    <div class="dimension-item">
+                        <h4>Connected</h4>
+                        <p>Your spiritual center is your relationships with others. You experience God most vividly through community, service, and love in action.</p>
+                        <p class="scripture">"Love your neighbor as yourself." &mdash; Matthew 22:39</p>
+                    </div>
+
+                    <div class="dimension-item">
+                        <h4>Becoming</h4>
+                        <p>Your spiritual center is transformation itself. You're drawn to growth, learning, and the ongoing process of sanctification.</p>
+                        <p class="scripture">"Be transformed by the renewing of your mind." &mdash; Romans 12:2</p>
+                    </div>
+                </div>
+
+                <div class="dimension-card">
+                    <h3>Expression</h3>
+                    <p class="dimension-subtitle">How your faith takes form</p>
+
+                    <div class="dimension-item">
+                        <h4>Active</h4>
+                        <p>You express faith through doing. Building, creating, organizing&mdash;your spirituality takes tangible form.</p>
+                        <p class="scripture">"Faith without works is dead." &mdash; James 2:26</p>
+                    </div>
+
+                    <div class="dimension-item">
+                        <h4>Contemplative</h4>
+                        <p>You express faith through reflection. Study, meditation, discernment&mdash;you process truth deeply before acting.</p>
+                        <p class="scripture">"In quietness and trust is your strength." &mdash; Isaiah 30:15</p>
+                    </div>
+
+                    <div class="dimension-item">
+                        <h4>Relational</h4>
+                        <p>You express faith through connection. Encouraging, nurturing, walking alongside&mdash;your spirituality is inherently interpersonal.</p>
+                        <p class="scripture">"By this everyone will know that you are my disciples, if you love one another." &mdash; John 13:35</p>
+                    </div>
+
+                    <div class="dimension-item">
+                        <h4>Protective</h4>
+                        <p>You express faith through advocacy. Speaking truth, defending the vulnerable&mdash;you cannot stay silent when something matters.</p>
+                        <p class="scripture">"Speak up for those who cannot speak for themselves." &mdash; Proverbs 31:8</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="framework-statement">
+            <h3>3 Orientations &times; 4 Expressions = 12 Types</h3>
+            <p>
+                These dimensions intersect to reveal twelve distinct spiritual personality types&mdash;twelve ways of walking with God that have been visible in His people from Genesis to Revelation. Each type connects to a biblical figure who embodies that personality's expression of faith.
+            </p>
         </div>
     </section>
 
     <!-- Types Showcase -->
     <section class="types-section" id="types">
         <div class="section-header">
-            <p class="section-label">The Framework</p>
-            <h2 class="section-title">12 Spiritual Types, Rooted in Scripture</h2>
+            <p class="section-label">The 12 Types</p>
+            <h2 class="section-title">Twelve Types, Twelve Biblical Witnesses</h2>
             <p class="section-subtitle">
-                Each type reflects a unique way of connecting with God, expressed through the lives of biblical figures who walked before us.
+                Each type connects to a biblical figure who embodies that personality's expression of faith. These figures demonstrate that your way of connecting with God has always existed in His people.
             </p>
         </div>
 
         <div class="types-grid">
             <div class="type-card">
-                <img src="assets/types/shepherd.png" alt="The Shepherd">
-                <h4>The Shepherd</h4>
-                <p>Devoted + Relational</p>
+                <img src="assets/types/artisan.png" alt="The Artisan">
+                <h4>The Artisan</h4>
+                <p class="type-figure">Nehemiah</p>
+                <p class="type-dimensions">Devoted + Active</p>
             </div>
             <div class="type-card">
                 <img src="assets/types/sage.png" alt="The Sage">
                 <h4>The Sage</h4>
-                <p>Devoted + Contemplative</p>
+                <p class="type-figure">Solomon</p>
+                <p class="type-dimensions">Devoted + Contemplative</p>
             </div>
             <div class="type-card">
-                <img src="assets/types/pioneer.png" alt="The Pioneer">
-                <h4>The Pioneer</h4>
-                <p>Becoming + Active</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/guardian.png" alt="The Guardian">
-                <h4>The Guardian</h4>
-                <p>Connected + Protective</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/artisan.png" alt="The Artisan">
-                <h4>The Artisan</h4>
-                <p>Devoted + Active</p>
+                <img src="assets/types/shepherd.png" alt="The Shepherd">
+                <h4>The Shepherd</h4>
+                <p class="type-figure">David</p>
+                <p class="type-dimensions">Devoted + Relational</p>
             </div>
             <div class="type-card">
                 <img src="assets/types/prophet.png" alt="The Prophet">
                 <h4>The Prophet</h4>
-                <p>Devoted + Protective</p>
+                <p class="type-figure">Elijah</p>
+                <p class="type-dimensions">Devoted + Protective</p>
             </div>
-        </div>
-
-        <div class="types-cta">
-            <p>...and 6 more types waiting to be discovered.</p>
+            <div class="type-card">
+                <img src="assets/types/server.png" alt="The Server">
+                <h4>The Server</h4>
+                <p class="type-figure">Dorcas</p>
+                <p class="type-dimensions">Connected + Active</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/teacher.png" alt="The Teacher">
+                <h4>The Teacher</h4>
+                <p class="type-figure">Apollos</p>
+                <p class="type-dimensions">Connected + Contemplative</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/companion.png" alt="The Companion">
+                <h4>The Companion</h4>
+                <p class="type-figure">Barnabas</p>
+                <p class="type-dimensions">Connected + Relational</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/guardian.png" alt="The Guardian">
+                <h4>The Guardian</h4>
+                <p class="type-figure">Esther</p>
+                <p class="type-dimensions">Connected + Protective</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/pioneer.png" alt="The Pioneer">
+                <h4>The Pioneer</h4>
+                <p class="type-figure">Paul</p>
+                <p class="type-dimensions">Becoming + Active</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/seeker.png" alt="The Seeker">
+                <h4>The Seeker</h4>
+                <p class="type-figure">Nicodemus</p>
+                <p class="type-dimensions">Becoming + Contemplative</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/disciple.png" alt="The Disciple">
+                <h4>The Disciple</h4>
+                <p class="type-figure">Peter</p>
+                <p class="type-dimensions">Becoming + Relational</p>
+            </div>
+            <div class="type-card">
+                <img src="assets/types/wrestler.png" alt="The Wrestler">
+                <h4>The Wrestler</h4>
+                <p class="type-figure">Jacob</p>
+                <p class="type-dimensions">Becoming + Protective</p>
+            </div>
         </div>
     </section>
 
@@ -896,33 +1339,133 @@
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">&#x2728;</div>
-                <h3>Personalized Devotionals</h3>
-                <p>Daily content matched to your spiritual type and current mood. Scripture that resonates because it's chosen for you.</p>
+                <h3>504 Personalized Devotionals</h3>
+                <p>Not templates or variations&mdash;genuinely distinct content for every combination of type, life season, and emotional state. Scripture that resonates because it's chosen for you.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">&#x1F56F;</div>
                 <h3>Biblical Figure Connection</h3>
-                <p>Discover which biblical figures share your spiritual personality. See yourself reflected in their stories.</p>
+                <p>Discover which biblical figure shares your spiritual personality. See yourself reflected in their stories. Your type becomes a lens for reading Scripture.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">&#x1F4D6;</div>
                 <h3>Reflective Journaling</h3>
-                <p>Capture your thoughts and spiritual insights. Your private space for growth and reflection.</p>
+                <p>Capture your thoughts and spiritual insights in a completely private space. Your entries stay on your device&mdash;never synced, never analyzed, never seen by anyone but you.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">&#x1F338;</div>
                 <h3>Grace, Not Guilt</h3>
-                <p>No streaks. No shame. We celebrate your return without dwelling on absence. Take breaks. Come back. You're welcome here.</p>
+                <p>No streaks. No shame. We celebrate your return without dwelling on absence. Take breaks. Come back. You're welcome here. Always.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">&#x1F512;</div>
                 <h3>Privacy-First</h3>
-                <p>Your spiritual journey is personal. Journal entries stay on your device. We never sell your data. Ever.</p>
+                <p>Your spiritual journey is between you and God. Journal entries never leave your device. We handle religious data with the care it deserves.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">&#x2B50;</div>
                 <h3>Beautiful Experience</h3>
-                <p>Thoughtfully designed with warm, inviting visuals. An app that feels as peaceful as the moments it creates.</p>
+                <p>Thoughtfully designed with warm, inviting visuals. An app that feels as peaceful as the moments it creates. Works offline too.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Report -->
+    <section class="report-section" id="report">
+        <div class="section-header">
+            <p class="section-label">Go Deeper</p>
+            <h2 class="section-title">Your Complete Spiritual Personality Report</h2>
+            <p class="section-subtitle">
+                A comprehensive, personalized analysis of your spiritual type&mdash;beautifully formatted and yours to keep forever.
+            </p>
+        </div>
+
+        <div class="report-container">
+            <div class="report-hero">
+                <div class="report-hero-text">
+                    <h3>More than a type reveal&mdash;<em>a roadmap for growth</em></h3>
+                    <p class="report-tagline">
+                        Your Premium Report is a 15-20 page personalized PDF that goes far beyond your type name.
+                        It's a deep exploration of how God designed you to connect with Him&mdash;complete with
+                        tailored practices, Scripture recommendations, and growth pathways written specifically for your spiritual wiring.
+                    </p>
+                    <div class="report-price-card">
+                        <span class="report-price">$9.99</span>
+                        <span class="report-price-note">One-time purchase<br>Yours forever</span>
+                    </div>
+                </div>
+                <div class="report-preview">
+                    <div class="report-preview-mockup">
+                        <h4>Your Spiritual Profile</h4>
+                        <p class="preview-subtitle">Personalized Report</p>
+                        <ul class="preview-toc">
+                            <li><span class="toc-icon">&#x1F4DC;</span> Personal Letter to You</li>
+                            <li><span class="toc-icon">&#x1F50D;</span> Deep Type Interpretation</li>
+                            <li><span class="toc-icon">&#x1F4D6;</span> Biblical Figure Connection</li>
+                            <li><span class="toc-icon">&#x1F4CA;</span> Dimensional Profile</li>
+                            <li><span class="toc-icon">&#x1F64F;</span> 5 Spiritual Practices</li>
+                            <li><span class="toc-icon">&#x1F331;</span> 3 Growth Pathways</li>
+                            <li><span class="toc-icon">&#x26A0;</span> Shadow Patterns</li>
+                            <li><span class="toc-icon">&#x1F4D6;</span> Scripture for Your Type</li>
+                            <li><span class="toc-icon">&#x1F381;</span> Spiritual Gifts Inventory</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="report-features-grid">
+                <div class="report-feature">
+                    <div class="report-feature-icon">&#x1F4DC;</div>
+                    <h4>Personal Letter</h4>
+                    <p>A warm, personalized welcome that speaks directly to your type&mdash;acknowledging your unique gifts and the journey ahead.</p>
+                </div>
+                <div class="report-feature">
+                    <div class="report-feature-icon">&#x1F50D;</div>
+                    <h4>Deep Type Analysis</h4>
+                    <p>A comprehensive exploration of your spiritual personality&mdash;how it shapes your prayer life, your relationships, and your growth.</p>
+                </div>
+                <div class="report-feature">
+                    <div class="report-feature-icon">&#x1F3A8;</div>
+                    <h4>Biblical Companion</h4>
+                    <p>Meet the scriptural figure who shares your wiring. Their story becomes a mirror for understanding your own spiritual journey.</p>
+                </div>
+                <div class="report-feature">
+                    <div class="report-feature-icon">&#x1F64F;</div>
+                    <h4>Tailored Practices</h4>
+                    <p>Five spiritual practices designed specifically for your type&mdash;not generic suggestions, but practices that fit how God made you.</p>
+                </div>
+                <div class="report-feature">
+                    <div class="report-feature-icon">&#x1F331;</div>
+                    <h4>Growth Pathways</h4>
+                    <p>Three specific growth opportunities with concrete action steps. Know exactly where to focus your spiritual development.</p>
+                </div>
+                <div class="report-feature">
+                    <div class="report-feature-icon">&#x26A0;</div>
+                    <h4>Shadow Awareness</h4>
+                    <p>Understand the patterns that emerge when your type is under stress&mdash;and the healthy alternatives that lead back to wholeness.</p>
+                </div>
+                <div class="report-feature">
+                    <div class="report-feature-icon">&#x1F4D6;</div>
+                    <h4>Scripture Selection</h4>
+                    <p>Five passages chosen specifically for your orientation and expression&mdash;Scripture that will speak to your soul.</p>
+                </div>
+                <div class="report-feature">
+                    <div class="report-feature-icon">&#x1F381;</div>
+                    <h4>Gifts Inventory</h4>
+                    <p>Discover your primary spiritual gifts, developing gifts, and stretch gifts&mdash;a complete picture of how you serve the Body.</p>
+                </div>
+                <div class="report-feature">
+                    <div class="report-feature-icon">&#x1F4E5;</div>
+                    <h4>Downloadable PDF</h4>
+                    <p>A beautifully designed 15-20 page document you can save, print, and share with your small group, spouse, or spiritual director.</p>
+                </div>
+            </div>
+
+            <div class="report-cta-container">
+                <a href="https://apps.apple.com/app/lamplit-path/id6740513581" class="cta-button" style="background: var(--deep-purple); color: white;">
+                    Get Your Report &mdash; $9.99
+                </a>
+                <p>Available after completing the free assessment in the app.</p>
             </div>
         </div>
     </section>
@@ -955,10 +1498,10 @@
     <section class="final-cta" id="download">
         <h2 class="section-title">Ready to discover your spiritual type?</h2>
         <p class="section-subtitle">
-            Join thousands finding deeper connection through personalized scripture.
+            Your faith is personal. Now your path is lit.<br>
             Free to start&mdash;no account required.
         </p>
-        <a href="#" class="cta-button">
+        <a href="https://apps.apple.com/app/lamplit-path/id6740513581" class="cta-button">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
             </svg>
@@ -972,15 +1515,16 @@
             <div class="footer-brand">
                 <img src="assets/images/app-icon.png" alt="Lamplit Path">
                 <p>
-                    Lamplit Path helps you discover your spiritual type and grow daily through
-                    personalized, biblically-grounded devotional content.
+                    Lamplit Path helps you discover your spiritual personality through our original 12-type framework,
+                    then guides your growth with personalized, biblically-grounded devotional content.
                 </p>
             </div>
             <div class="footer-links">
                 <h4>Product</h4>
                 <a href="#how-it-works">How It Works</a>
+                <a href="#framework">The Framework</a>
                 <a href="#types">The 12 Types</a>
-                <a href="#features">Features</a>
+                <a href="#report">Premium Report</a>
                 <a href="#download">Download</a>
             </div>
             <div class="footer-links">
@@ -991,7 +1535,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Lamplit Path. All rights reserved.</p>
+            <p>&copy; 2025 Lamplit Path. All rights reserved.</p>
             <p>ABN: 12 273 187 245 | Melbourne, Australia</p>
         </div>
     </footer>
@@ -1037,7 +1581,7 @@
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.problem-card, .step, .type-card, .feature-card').forEach(el => {
+        document.querySelectorAll('.problem-card, .step, .type-card, .feature-card, .dimension-card, .report-feature, .report-preview-mockup').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
