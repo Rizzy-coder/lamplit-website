@@ -63,7 +63,15 @@
   <!-- Navigation -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav__inner">
-      <a href="/" class="nav__brand">Lamplit Path</a>
+      <a href="/" class="nav__brand">
+        <img src="/images/branding/logo.png" alt="Lamplit Path" class="nav__logo">
+        Lamplit Path
+      </a>
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
       <ul class="nav__links">
         <li><a href="/types">The 12 Types</a></li>
         <li><a href="https://apps.apple.com/app/id6756659854" class="btn btn--primary btn--sm">Download Free</a></li>
@@ -296,5 +304,19 @@
     </div>
   </footer>
 
+  <script>
+    const toggle = document.querySelector('.nav__toggle');
+    const links = document.querySelector('.nav__links');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('nav__links--open');
+      toggle.classList.toggle('nav__toggle--open', open);
+      toggle.setAttribute('aria-expanded', open);
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      links.classList.remove('nav__links--open');
+      toggle.classList.remove('nav__toggle--open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+  </script>
 </body>
 </html>

@@ -435,46 +435,92 @@
     @media (max-width: 768px) {
       .hero {
         min-height: auto;
-        padding: 7rem 0 4rem;
+        padding: 6rem 0 3.5rem;
       }
 
       .hero h1 {
-        font-size: clamp(2.25rem, 8vw, 3.5rem);
+        font-size: clamp(2rem, 8vw, 3rem);
       }
 
-      .hero__stats {
-        gap: var(--space-xl);
+      .hero__subtitle {
+        font-size: 1.0625rem;
+        margin-bottom: var(--space-xl);
       }
 
       .hero__ctas {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+        gap: var(--space-md);
       }
 
+      .hero__stats {
+        gap: var(--space-lg);
+      }
+
+      .hero__stat strong {
+        font-size: 1.5rem;
+      }
+
+      .hero__stat span {
+        font-size: 0.6875rem;
+      }
+
+      /* Type showcase: 2x2 grid on tablet */
+      .type-showcase__row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+      }
+
+      .type-showcase__img {
+        width: 100px;
+        height: 100px;
+      }
+
+      /* Problem & features: stack */
       .problem__grid,
       .features__grid {
         grid-template-columns: 1fr;
         gap: var(--space-md);
       }
 
-      .type-showcase__img {
-        width: 130px;
-        height: 130px;
+      .problem__card,
+      .feature {
+        padding: var(--space-xl);
       }
 
-      .type-showcase__row {
-        gap: var(--space-xl);
+      /* Framework section */
+      .framework__intro {
+        font-size: 1rem;
       }
     }
 
     @media (max-width: 480px) {
+      .hero {
+        padding: 5.5rem 0 3rem;
+      }
+
+      .hero h1 {
+        font-size: 1.875rem;
+      }
+
+      /* Type showcase: still 2-col but smaller */
       .type-showcase__row {
         gap: var(--space-lg);
       }
 
       .type-showcase__img {
-        width: 110px;
-        height: 110px;
+        width: 80px;
+        height: 80px;
+      }
+
+      .type-showcase__name {
+        font-size: 1rem;
+      }
+
+      .hero__stats {
+        flex-direction: column;
+        gap: var(--space-md);
       }
     }
   </style>
@@ -484,7 +530,15 @@
   <!-- Navigation -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav__inner">
-      <a href="/" class="nav__brand">Lamplit Path</a>
+      <a href="/" class="nav__brand">
+        <img src="/images/branding/logo.png" alt="Lamplit Path" class="nav__logo">
+        Lamplit Path
+      </a>
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
       <ul class="nav__links">
         <li><a href="/types">The 12 Types</a></li>
         <li><a href="https://apps.apple.com/app/id6756659854" class="btn btn--primary btn--sm">Download Free</a></li>
@@ -802,5 +856,19 @@
     </div>
   </footer>
 
+  <script>
+    const toggle = document.querySelector('.nav__toggle');
+    const links = document.querySelector('.nav__links');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('nav__links--open');
+      toggle.classList.toggle('nav__toggle--open', open);
+      toggle.setAttribute('aria-expanded', open);
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      links.classList.remove('nav__links--open');
+      toggle.classList.remove('nav__toggle--open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+  </script>
 </body>
 </html>
