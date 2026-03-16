@@ -827,9 +827,8 @@ section {
     flex-shrink: 0;
   }
 
-  /* — Full-width CTAs — */
+  /* — CTAs — */
   .btn--lg {
-    width: 100%;
     text-align: center;
   }
 
