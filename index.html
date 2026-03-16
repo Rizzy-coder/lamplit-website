@@ -1,1687 +1,806 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lamplit Path - Discover Your Spiritual Type</title>
-    <meta name="description" content="Discover your unique spiritual type through our biblically-grounded 12-type framework. Receive personalized daily devotionals that speak to how you uniquely connect with God.">
-    <meta name="keywords" content="spiritual type, biblical personality, devotional app, faith journey, Christian app, spiritual growth, spiritual personality">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Lamplit Path - Discover Your Spiritual Type">
-    <meta property="og:description" content="Find the scripture that speaks to you. Discover your biblical personality type through our original 12-type framework and receive personalized daily devotionals.">
-    <meta property="og:image" content="assets/images/app-icon.png">
-    <meta property="og:type" content="website">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/app-icon.png">
-
-    <style>
-        :root {
-            --lamplit-gold: #E5A84B;
-            --lamplit-gold-light: #F5D89A;
-            --warm-cream: #FBF7F0;
-            --deep-charcoal: #1A1816;
-            --soft-amber: #C98B2F;
-            --muted-sage: #7A8B6E;
-            --dusty-rose: #B8A295;
-            --deep-purple: #4A3B5C;
-            --ethereal-blue: #6B8EC9;
-
-            --font-display: 'Cormorant Garamond', Georgia, serif;
-            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--deep-charcoal);
-            background: var(--warm-cream);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ========== NAVIGATION ========== */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(251, 247, 240, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(229, 168, 75, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            padding: 0.75rem 2rem;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--deep-charcoal);
-        }
-
-        .nav-logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-        }
-
-        .nav-logo span {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--deep-charcoal);
-            font-size: 0.95rem;
-            font-weight: 500;
-            opacity: 0.8;
-            transition: opacity 0.2s;
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-        .nav-cta {
-            background: var(--lamplit-gold);
-            color: white !important;
-            padding: 0.6rem 1.25rem;
-            border-radius: 100px;
-            opacity: 1 !important;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(229, 168, 75, 0.4);
-        }
-
-        /* ========== HERO SECTION ========== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('assets/images/cosmic-bg.png') center/cover;
-            opacity: 0.15;
-            z-index: -1;
-        }
-
-        .hero-lamp {
-            width: 180px;
-            height: auto;
-            margin-bottom: 2rem;
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 20px 40px rgba(229, 168, 75, 0.3));
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .hero-tagline {
-            font-family: var(--font-display);
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--lamplit-gold);
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 500;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            max-width: 800px;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--lamplit-gold);
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            max-width: 600px;
-            color: #555;
-            margin-bottom: 2.5rem;
-            line-height: 1.7;
-        }
-
-        .hero-cta {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .app-store-badge {
-            height: 54px;
-            transition: transform 0.2s;
-        }
-
-        .app-store-badge:hover {
-            transform: scale(1.05);
-        }
-
-        .hero-note {
-            font-size: 0.85rem;
-            color: #888;
-        }
-
-        /* ========== SECTION STYLES ========== */
-        section {
-            padding: 6rem 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
-        }
-
-        .section-label {
-            font-family: var(--font-display);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--lamplit-gold);
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 500;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.7;
-        }
-
-        /* ========== PROBLEM/SOLUTION ========== */
-        .problem-solution {
-            background: linear-gradient(180deg, var(--warm-cream) 0%, #F5F0E8 100%);
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .problem-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 24px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 0, 0, 0.04);
-        }
-
-        .problem-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--deep-charcoal);
-        }
-
-        .problem-card p {
-            color: #666;
-            line-height: 1.7;
-        }
-
-        .problem-card.highlight {
-            background: linear-gradient(135deg, var(--lamplit-gold) 0%, var(--soft-amber) 100%);
-            color: white;
-        }
-
-        .problem-card.highlight h3,
-        .problem-card.highlight p {
-            color: white;
-        }
-
-        /* ========== HOW IT WORKS ========== */
-        .how-it-works {
-            background: white;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .step {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--lamplit-gold-light) 0%, var(--lamplit-gold) 100%);
-            color: white;
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 8px 25px rgba(229, 168, 75, 0.3);
-        }
-
-        .step h3 {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .step p {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* ========== FRAMEWORK SECTION ========== */
-        .framework-section {
-            background: linear-gradient(180deg, #F5F0E8 0%, white 100%);
-            position: relative;
-        }
-
-        .framework-intro {
-            max-width: 800px;
-            margin: 0 auto 4rem;
-            text-align: center;
-        }
-
-        .framework-intro p {
-            font-size: 1.15rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .framework-intro p.emphasis {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            font-style: italic;
-            color: var(--deep-charcoal);
-        }
-
-        .dimensions-container {
-            max-width: 1100px;
-            margin: 0 auto 4rem;
-        }
-
-        .dimension-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .dimension-card {
-            background: white;
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(229, 168, 75, 0.1);
-        }
-
-        .dimension-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-            color: var(--lamplit-gold);
-        }
-
-        .dimension-card .dimension-subtitle {
-            font-size: 0.95rem;
-            color: #888;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .dimension-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .dimension-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .dimension-item h4 {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            color: var(--deep-charcoal);
-            margin-bottom: 0.25rem;
-        }
-
-        .dimension-item p {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .dimension-item .scripture {
-            font-style: italic;
-            color: var(--soft-amber);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-
-        .framework-statement {
-            background: linear-gradient(135deg, var(--deep-purple) 0%, #3A2D47 100%);
-            border-radius: 24px;
-            padding: 3rem;
-            text-align: center;
-            color: white;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .framework-statement h3 {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .framework-statement p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            opacity: 0.9;
-        }
-
-        /* ========== TYPES SHOWCASE ========== */
-        .types-section {
-            background: linear-gradient(180deg, white 0%, #F5F0E8 50%, var(--warm-cream) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .types-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('assets/images/ethereal-bg.png') center/cover;
-            opacity: 0.08;
-            z-index: 0;
-        }
-
-        .types-section > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .types-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .type-card {
-            background: white;
-            border-radius: 20px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .type-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(229, 168, 75, 0.15);
-        }
-
-        .type-card img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            margin-bottom: 0.75rem;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--lamplit-gold-light) 0%, var(--lamplit-gold) 100%);
-            padding: 3px;
-            box-shadow: 0 4px 15px rgba(229, 168, 75, 0.2);
-        }
-
-        .type-card h4 {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            color: var(--deep-charcoal);
-            margin-bottom: 0.25rem;
-        }
-
-        .type-card .type-figure {
-            font-size: 0.85rem;
-            color: var(--lamplit-gold);
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .type-card .type-dimensions {
-            font-size: 0.75rem;
-            color: #888;
-        }
-
-        /* ========== FEATURES ========== */
-        .features {
-            background: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            padding: 2rem;
-            border-radius: 20px;
-            background: var(--warm-cream);
-            border: 1px solid rgba(229, 168, 75, 0.1);
-        }
-
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--lamplit-gold-light) 0%, var(--lamplit-gold) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-            font-size: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card p {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* ========== PREMIUM REPORT ========== */
-        .report-section {
-            background: linear-gradient(180deg, #F5F0E8 0%, var(--warm-cream) 100%);
-            position: relative;
-        }
-
-        .report-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .report-hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-bottom: 4rem;
-        }
-
-        .report-hero-text h3 {
-            font-family: var(--font-display);
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .report-hero-text h3 em {
-            color: var(--lamplit-gold);
-            font-style: italic;
-        }
-
-        .report-hero-text .report-tagline {
-            font-size: 1.15rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .report-price-card {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            border: 1px solid rgba(229, 168, 75, 0.2);
-        }
-
-        .report-price {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--lamplit-gold);
-        }
-
-        .report-price-note {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .report-preview {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .report-preview-mockup {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-            transform: rotate(2deg);
-            max-width: 320px;
-        }
-
-        .report-preview-mockup h4 {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            color: var(--deep-purple);
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .report-preview-mockup .preview-subtitle {
-            font-size: 0.85rem;
-            color: var(--lamplit-gold);
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .preview-toc {
-            list-style: none;
-        }
-
-        .preview-toc li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            font-size: 0.85rem;
-            color: #555;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .preview-toc li:last-child {
-            border-bottom: none;
-        }
-
-        .preview-toc .toc-icon {
-            width: 20px;
-            text-align: center;
-        }
-
-        .report-features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .report-feature {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(229, 168, 75, 0.1);
-        }
-
-        .report-feature-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--deep-purple) 0%, #3A2D47 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-            font-size: 1.5rem;
-        }
-
-        .report-feature h4 {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--deep-charcoal);
-        }
-
-        .report-feature p {
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .report-cta-container {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .report-cta-container p {
-            color: #666;
-            font-size: 0.95rem;
-            margin-top: 1rem;
-        }
-
-        @media (max-width: 900px) {
-            .report-hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .report-preview {
-                order: -1;
-            }
-
-            .report-preview-mockup {
-                transform: none;
-            }
-
-            .report-price-card {
-                justify-content: center;
-            }
-
-            .report-features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .report-features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ========== TESTIMONIAL/QUOTE ========== */
-        .quote-section {
-            background: linear-gradient(135deg, var(--deep-purple) 0%, #3A2D47 100%);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quote-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('assets/images/cosmic-bg.png') center/cover;
-            opacity: 0.3;
-        }
-
-        .quote-section > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .quote-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .quote-content blockquote {
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            font-style: italic;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-        }
-
-        .quote-content cite {
-            font-style: normal;
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-
-        /* ========== PHILOSOPHY ========== */
-        .philosophy {
-            background: var(--warm-cream);
-        }
-
-        .philosophy-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .philosophy-text h3 {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
-        }
-
-        .philosophy-text h3 em {
-            color: var(--lamplit-gold);
-            font-style: italic;
-        }
-
-        .philosophy-text p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .philosophy-image {
-            display: flex;
-            justify-content: center;
-        }
-
-        .philosophy-image img {
-            max-width: 300px;
-            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
-        }
-
-        /* ========== FINAL CTA ========== */
-        .final-cta {
-            background: linear-gradient(135deg, var(--lamplit-gold) 0%, var(--soft-amber) 100%);
-            color: white;
-            text-align: center;
-            padding: 5rem 2rem;
-        }
-
-        .final-cta .section-title {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .final-cta .section-subtitle {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: white;
-            color: var(--lamplit-gold);
-            padding: 1rem 2rem;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        /* ========== FOOTER ========== */
-        footer {
-            background: var(--deep-charcoal);
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .footer-brand img {
-            width: 50px;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            line-height: 1.7;
-            max-width: 300px;
-        }
-
-        .footer-links h4 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-            color: var(--lamplit-gold);
-        }
-
-        .footer-links a {
-            display: block;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            max-width: 1100px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 1000px) {
-            .types-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 900px) {
-            .philosophy-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .philosophy-image {
-                order: -1;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .footer-brand {
-                grid-column: span 2;
-            }
-
-            .dimension-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 0.75rem 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 7rem 1.5rem 3rem;
-            }
-
-            .hero-lamp {
-                width: 140px;
-            }
-
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            .types-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .type-card {
-                padding: 1rem;
-            }
-
-            .type-card img {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .footer-brand {
-                grid-column: auto;
-            }
-
-            .footer-brand p {
-                max-width: none;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-        }
-
-        /* ========== ANIMATIONS ========== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-in {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lamplit Path — Discover Your Spiritual Personality</title>
+  <meta name="description" content="Discover your spiritual personality type with a 50-question assessment rooted in Scripture. 12 types, 504 personalized devotionals, and a premium report revealing your unique spiritual DNA.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Lamplit Path — Discover Your Spiritual Personality">
+  <meta property="og:description" content="A 50-question assessment rooted in Scripture reveals your spiritual personality type. 12 types, 504 daily devotionals, zero guilt.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lamplitpath.app">
+  <meta property="og:image" content="https://lamplitpath.app/images/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lamplit Path — Discover Your Spiritual Personality">
+  <meta name="twitter:description" content="A 50-question assessment rooted in Scripture reveals your spiritual personality type.">
+
+  <!-- Apple Smart Banner -->
+  <meta name="apple-itunes-app" content="app-id=6756659854">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Lamplit Path",
+    "operatingSystem": "iOS",
+    "applicationCategory": "LifestyleApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Discover your spiritual personality type with a 50-question assessment rooted in Scripture. 12 types, 504 personalized devotionals.",
+    "url": "https://apps.apple.com/app/id6756659854"
+  }
+  </script>
+
+  <!-- Fonts + Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    /* ===================================================================
+       INDEX PAGE — Dark premium theme override
+       =================================================================== */
+
+    /* Override body to dark for this page */
+    body {
+      background: #1A1816;
+      color: #F5F0E8;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 0 6rem;
+      text-align: center;
+      position: relative;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(107, 91, 122, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 70%, rgba(229, 168, 75, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(184, 96, 74, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #1A1816 0%, #252220 60%, #1A1816 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(229, 168, 75, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero h1 {
+      background: linear-gradient(135deg, #F5F0E8 0%, #E5A84B 50%, #F5F0E8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-lg);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 1.08;
+      color: transparent;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+    }
+
+    .hero__subtitle {
+      font-family: var(--font-serif);
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+      color: rgba(245, 240, 232, 0.85);
+      max-width: 620px;
+      margin: 0 auto var(--space-2xl);
+      line-height: 1.6;
+    }
+
+    .hero__ctas {
+      display: flex;
+      gap: var(--space-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .hero__stats {
+      display: flex;
+      justify-content: center;
+      gap: clamp(2rem, 5vw, 4rem);
+      flex-wrap: wrap;
+    }
+
+    .hero__stat {
+      text-align: center;
+    }
+
+    .hero__stat strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .hero__stat span {
+      font-size: 0.8125rem;
+      color: rgba(245, 240, 232, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    /* ===== TYPE SHOWCASE ===== */
+    .type-showcase {
+      padding: clamp(5rem, 10vw, 8rem) 0;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 60% 20%, rgba(229, 168, 75, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #1A1816 0%, #252220 100%);
+    }
+
+    .type-showcase h2 {
+      color: var(--cream);
+    }
+
+    .type-showcase__row {
+      display: flex;
+      justify-content: center;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      margin-top: var(--space-2xl);
+      flex-wrap: wrap;
+    }
+
+    .type-showcase__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .type-showcase__item:hover {
+      transform: translateY(-6px);
+    }
+
+    .type-showcase__img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      box-shadow: 0 8px 32px rgba(229, 168, 75, 0.2);
+      filter: drop-shadow(0 4px 16px rgba(229, 168, 75, 0.3));
+      margin-bottom: var(--space-md);
+      transition: box-shadow 0.3s ease, filter 0.3s ease;
+    }
+
+    .type-showcase__item:hover .type-showcase__img {
+      box-shadow: 0 12px 40px rgba(229, 168, 75, 0.35);
+      filter: drop-shadow(0 6px 24px rgba(229, 168, 75, 0.4));
+    }
+
+    .type-showcase__name {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: 0.01em;
+    }
+
+    .type-showcase__orientation {
+      font-size: 0.75rem;
+      color: rgba(245, 240, 232, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    /* ===== PROBLEM SECTION (dark glassmorphic) ===== */
+    .problem {
+      text-align: center;
+      padding: clamp(6rem, 12vw, 10rem) 0;
+      background:
+        radial-gradient(ellipse at 80% 50%, rgba(107, 91, 122, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 50%, rgba(229, 168, 75, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #252220 0%, #1A1816 100%);
+    }
+
+    .problem h2 {
+      color: var(--cream);
+    }
+
+    .problem__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+      margin-top: var(--space-2xl);
+    }
+
+    .problem .card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(229, 168, 75, 0.1);
+      border-radius: var(--radius-lg);
+      box-shadow: none;
+    }
+
+    .problem .card:hover {
+      border-color: rgba(229, 168, 75, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(229, 168, 75, 0.1);
+    }
+
+    .problem__card {
+      padding: var(--space-2xl);
+      text-align: center;
+    }
+
+    .problem__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: rgba(229, 168, 75, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-lg);
+    }
+
+    .problem__card h3 {
+      color: var(--cream);
+      margin-bottom: var(--space-sm);
+    }
+
+    .problem__card p {
+      color: rgba(245, 240, 232, 0.7);
+      font-size: 0.9375rem;
+      margin-bottom: 0;
+      line-height: 1.7;
+    }
+
+    /* ===== FRAMEWORK (Cream Section for Contrast) ===== */
+    .framework {
+      text-align: center;
+      padding: clamp(6rem, 12vw, 10rem) 0;
+    }
+
+    .framework h2 {
+      color: var(--charcoal);
+    }
+
+    .framework .divider {
+      background: var(--gold);
+      box-shadow: none;
+    }
+
+    .framework__intro {
+      max-width: 640px;
+      margin: 0 auto var(--space-2xl);
+      color: rgba(26, 24, 22, 0.7);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+    }
+
+    .framework .type-card {
+      background: #FFFFFF;
+      color: var(--charcoal);
+    }
+
+    .framework .type-card:hover {
+      color: var(--charcoal);
+    }
+
+    .framework .type-card__name {
+      color: var(--charcoal);
+    }
+
+    .framework .type-card__tagline {
+      color: rgba(26, 24, 22, 0.6);
+    }
+
+    .framework .label {
+      color: #C48A2F;
+    }
+
+    .framework .btn--outline {
+      color: #C48A2F;
+      border-color: #C48A2F;
+    }
+
+    .framework .btn--outline:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+
+    /* ===== FEATURES (dark glassmorphic) ===== */
+    .features-section {
+      padding: clamp(6rem, 12vw, 10rem) 0;
+      background:
+        radial-gradient(ellipse at 30% 30%, rgba(229, 168, 75, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 70%, rgba(107, 91, 122, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #1A1816 0%, #252220 50%, #1A1816 100%);
+      color: var(--cream);
+    }
+
+    .features-section h2 {
+      color: var(--cream);
+    }
+
+    .features__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+      margin-top: var(--space-2xl);
+    }
+
+    .feature {
+      text-align: center;
+      padding: var(--space-2xl);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(229, 168, 75, 0.08);
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature:hover {
+      border-color: rgba(229, 168, 75, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(229, 168, 75, 0.08);
+    }
+
+    .feature__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: rgba(229, 168, 75, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-lg);
+    }
+
+    .feature h3 {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-sm);
+      color: var(--cream);
+    }
+
+    .feature p {
+      font-size: 0.9375rem;
+      margin-bottom: 0;
+      color: rgba(245, 240, 232, 0.7);
+      line-height: 1.7;
+    }
+
+    /* SVG icons */
+    .feature__icon svg,
+    .problem__icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta {
+      text-align: center;
+      padding: clamp(6rem, 12vw, 10rem) 0;
+      background:
+        radial-gradient(ellipse at 50% 60%, rgba(229, 168, 75, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 40%, rgba(107, 91, 122, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #252220 0%, #1A1816 100%);
+    }
+
+    .cta h2 {
+      color: var(--cream);
+      margin-bottom: var(--space-md);
+    }
+
+    .cta p {
+      font-family: var(--font-serif);
+      font-size: clamp(1.0625rem, 2vw, 1.25rem);
+      color: rgba(245, 240, 232, 0.8);
+      max-width: 520px;
+      margin: 0 auto var(--space-2xl);
+      line-height: 1.7;
+    }
+
+    .cta .btn--primary {
+      box-shadow: 0 10px 40px rgba(229, 168, 75, 0.3);
+    }
+
+    .cta .btn--primary:hover {
+      box-shadow: 0 14px 50px rgba(229, 168, 75, 0.45);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero {
+        min-height: auto;
+        padding: 7rem 0 4rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.25rem, 8vw, 3.5rem);
+      }
+
+      .hero__stats {
+        gap: var(--space-xl);
+      }
+
+      .hero__ctas {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .problem__grid,
+      .features__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+
+      .type-showcase__img {
+        width: 130px;
+        height: 130px;
+      }
+
+      .type-showcase__row {
+        gap: var(--space-xl);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .type-showcase__row {
+        gap: var(--space-lg);
+      }
+
+      .type-showcase__img {
+        width: 110px;
+        height: 110px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <a href="#" class="nav-logo">
-            <img src="assets/images/app-icon.png" alt="Lamplit Path">
-            <span>Lamplit Path</span>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="/" class="nav__brand">Lamplit Path</a>
+      <ul class="nav__links">
+        <li><a href="/types">The 12 Types</a></li>
+        <li><a href="https://apps.apple.com/app/id6756659854" class="btn btn--primary btn--sm">Download Free</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <span class="label">Spiritual Personality Assessment</span>
+      <h1>Find the scripture that<br>speaks to you</h1>
+      <p class="hero__subtitle">A 50-question assessment rooted in Scripture reveals your spiritual personality type — then delivers daily devotionals written specifically for you.</p>
+      <div class="hero__ctas">
+        <a href="https://apps.apple.com/app/id6756659854" class="btn btn--primary btn--lg">Download Free on the App Store</a>
+        <a href="/types" class="btn btn--secondary btn--lg">Explore the 12 Types</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <strong>12</strong>
+          <span>Spiritual Types</span>
+        </div>
+        <div class="hero__stat">
+          <strong>504</strong>
+          <span>Daily Devotionals</span>
+        </div>
+        <div class="hero__stat">
+          <strong>100%</strong>
+          <span>Built from Scripture</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Type Showcase -->
+  <section class="type-showcase">
+    <div class="container">
+      <span class="label">Discover Your Type</span>
+      <h2>Which spiritual personality are you?</h2>
+      <hr class="divider">
+      <div class="type-showcase__row">
+        <a href="/types/sage" class="type-showcase__item">
+          <img src="/images/types/sage.png" alt="The Sage" class="type-showcase__img" loading="lazy">
+          <span class="type-showcase__name">The Sage</span>
+          <span class="type-showcase__orientation">Devoted</span>
         </a>
-        <div class="nav-links">
-            <a href="#how-it-works">How It Works</a>
-            <a href="#framework">The Framework</a>
-            <a href="#types">The 12 Types</a>
-            <a href="#report">Premium Report</a>
-            <a href="#download" class="nav-cta">Download</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <img src="assets/images/hero-lamp.png" alt="Lamplit Path" class="hero-lamp">
-        <p class="hero-tagline">Discover Your Spiritual Personality</p>
-        <h1>Find the scripture that <em>speaks to you</em></h1>
-        <p class="hero-subtitle">
-            Uncover your unique spiritual personality through our original 12-type framework,
-            then receive daily devotionals crafted for how God designed you to connect with Him.
-        </p>
-        <div class="hero-cta">
-            <a href="#download">
-                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store" class="app-store-badge">
-            </a>
-            <p class="hero-note">Free to start. No account required.</p>
-        </div>
-    </section>
-
-    <!-- Problem/Solution -->
-    <section class="problem-solution">
-        <div class="section-header">
-            <p class="section-label">The Challenge</p>
-            <h2 class="section-title">Your faith is personal. Why isn't your spiritual content?</h2>
-            <p class="section-subtitle">
-                You want to grow spiritually, but generic devotionals don't resonate.
-                You've tried apps that feel cold, preachy, or guilt-inducing.
-                You're looking for something that actually gets you.
-            </p>
-        </div>
-
-        <div class="problem-grid">
-            <div class="problem-card">
-                <h3>"Why does this feel hollow?"</h3>
-                <p>Certain spiritual practices feel like coming home&mdash;while others feel like wearing someone else's clothes. You're not doing faith wrong. You're doing faith as God designed you.</p>
-            </div>
-            <div class="problem-card">
-                <h3>"This wasn't written for me"</h3>
-                <p>Generic one-size-fits-all devotionals miss the mark. What resonates with one person falls flat for another. Your spiritual wiring is unique&mdash;your content should be too.</p>
-            </div>
-            <div class="problem-card highlight">
-                <h3>There's a better way</h3>
-                <p>Imagine knowing your spiritual personality type&mdash;and meeting a biblical figure who shares your wiring. Daily content that speaks directly to how God made you.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="section-header">
-            <p class="section-label">Your Journey</p>
-            <h2 class="section-title">Three steps to spiritual clarity</h2>
-            <p class="section-subtitle">
-                A thoughtful process designed to meet you where you are and guide you forward.
-            </p>
-        </div>
-
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Take the Assessment</h3>
-                <p>Answer 50 reflective questions that explore how you connect with God and express your faith. No right or wrong answers&mdash;just you.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Discover Your Type</h3>
-                <p>Receive your spiritual personality type and meet the biblical figure who shares your spiritual wiring. Finally understand why you connect with God the way you do.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Grow Daily</h3>
-                <p>Wake up to personalized devotionals matched to your type and current mood. Scripture, reflection, and prayer crafted for how God designed you.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- The Framework -->
-    <section class="framework-section" id="framework">
-        <div class="section-header">
-            <p class="section-label">The Foundation</p>
-            <h2 class="section-title">A Framework Born From Scripture</h2>
-            <p class="section-subtitle">
-                The Lamplit 12-Type Framework wasn't adapted from secular categories. It was built by studying Scripture itself.
-            </p>
-        </div>
-
-        <div class="framework-intro">
-            <p>
-                We observed how different personalities have always expressed faith&mdash;from the builders and prophets of the Old Testament to the teachers and companions of the early church. What emerged was a pattern visible across the biblical narrative: a pattern that illuminates how God, in His creativity, designed different people to know Him in different ways.
-            </p>
-            <p class="emphasis">
-                You're not an anomaly. You're part of a pattern as old as faith itself.
-            </p>
-        </div>
-
-        <div class="dimensions-container">
-            <div class="dimension-row">
-                <div class="dimension-card">
-                    <h3>Orientation</h3>
-                    <p class="dimension-subtitle">The direction of your spiritual heart</p>
-
-                    <div class="dimension-item">
-                        <h4>Devoted</h4>
-                        <p>Your spiritual center is your personal relationship with God. You're drawn to worship, prayer, and direct communion with the divine.</p>
-                        <p class="scripture">"Love the Lord your God with all your heart, with all your soul, and with all your mind." &mdash; Matthew 22:37</p>
-                    </div>
-
-                    <div class="dimension-item">
-                        <h4>Connected</h4>
-                        <p>Your spiritual center is your relationships with others. You experience God most vividly through community, service, and love in action.</p>
-                        <p class="scripture">"Love your neighbor as yourself." &mdash; Matthew 22:39</p>
-                    </div>
-
-                    <div class="dimension-item">
-                        <h4>Becoming</h4>
-                        <p>Your spiritual center is transformation itself. You're drawn to growth, learning, and the ongoing process of sanctification.</p>
-                        <p class="scripture">"Be transformed by the renewing of your mind." &mdash; Romans 12:2</p>
-                    </div>
-                </div>
-
-                <div class="dimension-card">
-                    <h3>Expression</h3>
-                    <p class="dimension-subtitle">How your faith takes form</p>
-
-                    <div class="dimension-item">
-                        <h4>Active</h4>
-                        <p>You express faith through doing. Building, creating, organizing&mdash;your spirituality takes tangible form.</p>
-                        <p class="scripture">"Faith without works is dead." &mdash; James 2:26</p>
-                    </div>
-
-                    <div class="dimension-item">
-                        <h4>Contemplative</h4>
-                        <p>You express faith through reflection. Study, meditation, discernment&mdash;you process truth deeply before acting.</p>
-                        <p class="scripture">"In quietness and trust is your strength." &mdash; Isaiah 30:15</p>
-                    </div>
-
-                    <div class="dimension-item">
-                        <h4>Relational</h4>
-                        <p>You express faith through connection. Encouraging, nurturing, walking alongside&mdash;your spirituality is inherently interpersonal.</p>
-                        <p class="scripture">"By this everyone will know that you are my disciples, if you love one another." &mdash; John 13:35</p>
-                    </div>
-
-                    <div class="dimension-item">
-                        <h4>Protective</h4>
-                        <p>You express faith through advocacy. Speaking truth, defending the vulnerable&mdash;you cannot stay silent when something matters.</p>
-                        <p class="scripture">"Speak up for those who cannot speak for themselves." &mdash; Proverbs 31:8</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="framework-statement">
-            <h3>3 Orientations &times; 4 Expressions = 12 Types</h3>
-            <p>
-                These dimensions intersect to reveal twelve distinct spiritual personality types&mdash;twelve ways of walking with God that have been visible in His people from Genesis to Revelation. Each type connects to a biblical figure who embodies that personality's expression of faith.
-            </p>
-        </div>
-    </section>
-
-    <!-- Types Showcase -->
-    <section class="types-section" id="types">
-        <div class="section-header">
-            <p class="section-label">The 12 Types</p>
-            <h2 class="section-title">Twelve Types, Twelve Biblical Witnesses</h2>
-            <p class="section-subtitle">
-                Each type connects to a biblical figure who embodies that personality's expression of faith. These figures demonstrate that your way of connecting with God has always existed in His people.
-            </p>
-        </div>
-
-        <div class="types-grid">
-            <div class="type-card">
-                <img src="assets/types/artisan.png" alt="The Artisan">
-                <h4>The Artisan</h4>
-                <p class="type-figure">Nehemiah</p>
-                <p class="type-dimensions">Devoted + Active</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/sage.png" alt="The Sage">
-                <h4>The Sage</h4>
-                <p class="type-figure">Solomon</p>
-                <p class="type-dimensions">Devoted + Contemplative</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/shepherd.png" alt="The Shepherd">
-                <h4>The Shepherd</h4>
-                <p class="type-figure">David</p>
-                <p class="type-dimensions">Devoted + Relational</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/prophet.png" alt="The Prophet">
-                <h4>The Prophet</h4>
-                <p class="type-figure">Elijah</p>
-                <p class="type-dimensions">Devoted + Protective</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/server.png" alt="The Server">
-                <h4>The Server</h4>
-                <p class="type-figure">Dorcas</p>
-                <p class="type-dimensions">Connected + Active</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/teacher.png" alt="The Teacher">
-                <h4>The Teacher</h4>
-                <p class="type-figure">Apollos</p>
-                <p class="type-dimensions">Connected + Contemplative</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/companion.png" alt="The Companion">
-                <h4>The Companion</h4>
-                <p class="type-figure">Barnabas</p>
-                <p class="type-dimensions">Connected + Relational</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/guardian.png" alt="The Guardian">
-                <h4>The Guardian</h4>
-                <p class="type-figure">Esther</p>
-                <p class="type-dimensions">Connected + Protective</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/pioneer.png" alt="The Pioneer">
-                <h4>The Pioneer</h4>
-                <p class="type-figure">Paul</p>
-                <p class="type-dimensions">Becoming + Active</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/seeker.png" alt="The Seeker">
-                <h4>The Seeker</h4>
-                <p class="type-figure">Nicodemus</p>
-                <p class="type-dimensions">Becoming + Contemplative</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/disciple.png" alt="The Disciple">
-                <h4>The Disciple</h4>
-                <p class="type-figure">Peter</p>
-                <p class="type-dimensions">Becoming + Relational</p>
-            </div>
-            <div class="type-card">
-                <img src="assets/types/wrestler.png" alt="The Wrestler">
-                <h4>The Wrestler</h4>
-                <p class="type-figure">Jacob</p>
-                <p class="type-dimensions">Becoming + Protective</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quote Section -->
-    <section class="quote-section">
-        <div class="quote-content">
-            <blockquote>
-                "Your word is a lamp for my feet, a light on my path."
-            </blockquote>
-            <cite>Psalm 119:105</cite>
-        </div>
-    </section>
-
-    <!-- Features -->
-    <section class="features" id="features">
-        <div class="section-header">
-            <p class="section-label">What You Get</p>
-            <h2 class="section-title">Designed for your spiritual journey</h2>
-            <p class="section-subtitle">
-                Every feature built with intention, grace, and respect for where you are in your faith.
-            </p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-                    </svg>
-                </div>
-                <h3>504 Personalized Devotionals</h3>
-                <p>Not templates or variations&mdash;genuinely distinct content for every combination of type, life season, and emotional state. Scripture that resonates because it's chosen for you.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2C12 2 10 6 10 9C10 11 12 12 12 12C12 12 14 11 14 9C14 6 12 2 12 2Z"/>
-                        <path d="M12 12V22"/>
-                        <path d="M8 22H16"/>
-                        <circle cx="12" cy="9" r="1" fill="white"/>
-                    </svg>
-                </div>
-                <h3>Biblical Figure Connection</h3>
-                <p>Discover which biblical figure shares your spiritual personality. See yourself reflected in their stories. Your type becomes a lens for reading Scripture.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                        <line x1="8" y1="7" x2="16" y2="7"/>
-                        <line x1="8" y1="11" x2="14" y2="11"/>
-                    </svg>
-                </div>
-                <h3>Reflective Journaling</h3>
-                <p>Capture your thoughts and spiritual insights in a completely private space. Your entries stay on your device&mdash;never synced, never analyzed, never seen by anyone but you.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                    </svg>
-                </div>
-                <h3>Grace, Not Guilt</h3>
-                <p>No streaks. No shame. We celebrate your return without dwelling on absence. Take breaks. Come back. You're welcome here. Always.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        <circle cx="12" cy="16" r="1" fill="white"/>
-                    </svg>
-                </div>
-                <h3>Privacy-First</h3>
-                <p>Your spiritual journey is between you and God. Journal entries never leave your device. We handle religious data with the care it deserves.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 6v6l4 2"/>
-                    </svg>
-                </div>
-                <h3>Beautiful Experience</h3>
-                <p>Thoughtfully designed with warm, inviting visuals. An app that feels as peaceful as the moments it creates. Works offline too.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Premium Report -->
-    <section class="report-section" id="report">
-        <div class="section-header">
-            <p class="section-label">Go Deeper</p>
-            <h2 class="section-title">Your Complete Spiritual Personality Report</h2>
-            <p class="section-subtitle">
-                A comprehensive, personalized analysis of your spiritual type&mdash;beautifully formatted and yours to keep forever.
-            </p>
-        </div>
-
-        <div class="report-container">
-            <div class="report-hero">
-                <div class="report-hero-text">
-                    <h3>More than a type reveal&mdash;<em>a roadmap for growth</em></h3>
-                    <p class="report-tagline">
-                        Your Premium Report is a 15-20 page personalized PDF that goes far beyond your type name.
-                        It's a deep exploration of how God designed you to connect with Him&mdash;complete with
-                        tailored practices, Scripture recommendations, and growth pathways written specifically for your spiritual wiring.
-                    </p>
-                    <div class="report-price-card">
-                        <span class="report-price">$9.99</span>
-                        <span class="report-price-note">One-time purchase<br>Yours forever</span>
-                    </div>
-                </div>
-                <div class="report-preview">
-                    <div class="report-preview-mockup">
-                        <h4>Your Spiritual Profile</h4>
-                        <p class="preview-subtitle">Personalized Report</p>
-                        <ul class="preview-toc">
-                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span> Personal Letter to You</li>
-                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></span> Deep Type Interpretation</li>
-                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> Biblical Figure Connection</li>
-                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></span> Dimensional Profile</li>
-                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M12 2C12 2 8 6 8 10a4 4 0 0 0 8 0c0-4-4-8-4-8z"/><path d="M12 14v8"/><path d="M8 22h8"/></svg></span> 5 Spiritual Practices</li>
-                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg></span> 3 Growth Pathways</li>
-                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg></span> Shadow Patterns</li>
-                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> Scripture for Your Type</li>
-                            <li><span class="toc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lamplit-gold)" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg></span> Spiritual Gifts Inventory</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="report-features-grid">
-                <div class="report-feature">
-                    <div class="report-feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <path d="M14 2v6h6"/>
-                            <path d="M16 13H8"/>
-                            <path d="M16 17H8"/>
-                        </svg>
-                    </div>
-                    <h4>Personal Letter</h4>
-                    <p>A warm, personalized welcome that speaks directly to your type&mdash;acknowledging your unique gifts and the journey ahead.</p>
-                </div>
-                <div class="report-feature">
-                    <div class="report-feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"/>
-                            <path d="M21 21l-4.35-4.35"/>
-                        </svg>
-                    </div>
-                    <h4>Deep Type Analysis</h4>
-                    <p>A comprehensive exploration of your spiritual personality&mdash;how it shapes your prayer life, your relationships, and your growth.</p>
-                </div>
-                <div class="report-feature">
-                    <div class="report-feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                    </div>
-                    <h4>Biblical Companion</h4>
-                    <p>Meet the scriptural figure who shares your wiring. Their story becomes a mirror for understanding your own spiritual journey.</p>
-                </div>
-                <div class="report-feature">
-                    <div class="report-feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2C12 2 8 6 8 10a4 4 0 0 0 8 0c0-4-4-8-4-8z"/>
-                            <path d="M12 14v8"/>
-                            <path d="M8 22h8"/>
-                        </svg>
-                    </div>
-                    <h4>Tailored Practices</h4>
-                    <p>Five spiritual practices designed specifically for your type&mdash;not generic suggestions, but practices that fit how God made you.</p>
-                </div>
-                <div class="report-feature">
-                    <div class="report-feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2v4"/>
-                            <path d="M12 18v4"/>
-                            <path d="M4.93 4.93l2.83 2.83"/>
-                            <path d="M16.24 16.24l2.83 2.83"/>
-                            <path d="M2 12h4"/>
-                            <path d="M18 12h4"/>
-                            <path d="M4.93 19.07l2.83-2.83"/>
-                            <path d="M16.24 7.76l2.83-2.83"/>
-                        </svg>
-                    </div>
-                    <h4>Growth Pathways</h4>
-                    <p>Three specific growth opportunities with concrete action steps. Know exactly where to focus your spiritual development.</p>
-                </div>
-                <div class="report-feature">
-                    <div class="report-feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 9v4"/>
-                            <path d="M12 17h.01"/>
-                            <circle cx="12" cy="12" r="10"/>
-                        </svg>
-                    </div>
-                    <h4>Shadow Awareness</h4>
-                    <p>Understand the patterns that emerge when your type is under stress&mdash;and the healthy alternatives that lead back to wholeness.</p>
-                </div>
-                <div class="report-feature">
-                    <div class="report-feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                        </svg>
-                    </div>
-                    <h4>Scripture Selection</h4>
-                    <p>Five passages chosen specifically for your orientation and expression&mdash;Scripture that will speak to your soul.</p>
-                </div>
-                <div class="report-feature">
-                    <div class="report-feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-                        </svg>
-                    </div>
-                    <h4>Gifts Inventory</h4>
-                    <p>Discover your primary spiritual gifts, developing gifts, and stretch gifts&mdash;a complete picture of how you serve the Body.</p>
-                </div>
-                <div class="report-feature">
-                    <div class="report-feature-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                            <polyline points="7 10 12 15 17 10"/>
-                            <line x1="12" y1="15" x2="12" y2="3"/>
-                        </svg>
-                    </div>
-                    <h4>Downloadable PDF</h4>
-                    <p>A beautifully designed 15-20 page document you can save, print, and share with your small group, spouse, or spiritual director.</p>
-                </div>
-            </div>
-
-            <div class="report-cta-container">
-                <a href="https://apps.apple.com/app/lamplit-path/id6740513581" class="cta-button" style="background: var(--deep-purple); color: white;">
-                    Get Your Report &mdash; $9.99
-                </a>
-                <p>Available after completing the free assessment in the app.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Philosophy -->
-    <section class="philosophy">
-        <div class="philosophy-content">
-            <div class="philosophy-text">
-                <h3>Built on a philosophy of <em>celebrate without nag</em></h3>
-                <p>
-                    Most apps want you addicted. We want you nourished. Lamplit Path is designed
-                    around grace&mdash;the same grace at the heart of Scripture itself.
-                </p>
-                <p>
-                    There are no guilt-inducing streak counters. No push notifications shaming you
-                    for missing a day. When you return after time away, we simply welcome you back warmly.
-                </p>
-                <p>
-                    Your spiritual growth happens on your timeline, in your way. We're just here to
-                    illuminate the path when you're ready to walk it.
-                </p>
-            </div>
-            <div class="philosophy-image">
-                <img src="assets/images/onboarding-lamp.png" alt="Lamplit Path">
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="final-cta" id="download">
-        <h2 class="section-title">Ready to discover your spiritual type?</h2>
-        <p class="section-subtitle">
-            Your faith is personal. Now your path is lit.<br>
-            Free to start&mdash;no account required.
-        </p>
-        <a href="https://apps.apple.com/app/lamplit-path/id6740513581" class="cta-button">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-            </svg>
-            Download for iOS
+        <a href="/types/shepherd" class="type-showcase__item">
+          <img src="/images/types/shepherd.png" alt="The Shepherd" class="type-showcase__img" loading="lazy">
+          <span class="type-showcase__name">The Shepherd</span>
+          <span class="type-showcase__orientation">Devoted</span>
         </a>
-    </section>
+        <a href="/types/companion" class="type-showcase__item">
+          <img src="/images/types/companion.png" alt="The Companion" class="type-showcase__img" loading="lazy">
+          <span class="type-showcase__name">The Companion</span>
+          <span class="type-showcase__orientation">Connected</span>
+        </a>
+        <a href="/types/seeker" class="type-showcase__item">
+          <img src="/images/types/seeker.png" alt="The Seeker" class="type-showcase__img" loading="lazy">
+          <span class="type-showcase__name">The Seeker</span>
+          <span class="type-showcase__orientation">Becoming</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <img src="assets/images/app-icon.png" alt="Lamplit Path">
-                <p>
-                    Lamplit Path helps you discover your spiritual personality through our original 12-type framework,
-                    then guides your growth with personalized, biblically-grounded devotional content.
-                </p>
-            </div>
-            <div class="footer-links">
-                <h4>Product</h4>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#framework">The Framework</a>
-                <a href="#types">The 12 Types</a>
-                <a href="#report">Premium Report</a>
-                <a href="#download">Download</a>
-            </div>
-            <div class="footer-links">
-                <h4>Legal</h4>
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms-of-service.html">Terms of Service</a>
-                <a href="mailto:hermes.cloudhorizon@gmail.com">Contact</a>
-            </div>
+  <!-- Problem Framing -->
+  <section class="problem">
+    <div class="container">
+      <span class="label">Why Lamplit Path</span>
+      <h2>Generic devotionals feel hollow</h2>
+      <hr class="divider">
+      <div class="problem__grid">
+        <div class="card problem__card">
+          <div class="problem__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#E5A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15 8.5L22 9.5L17 14.5L18 21.5L12 18.5L6 21.5L7 14.5L2 9.5L9 8.5Z"/></svg></div>
+          <h3>Personalized</h3>
+          <p>Your assessment results shape every devotional you receive — not a one-size-fits-all feed.</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Lamplit Path. All rights reserved.</p>
-            <p>ABN: 12 273 187 245 | Melbourne, Australia</p>
+        <div class="card problem__card">
+          <div class="problem__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#E5A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8C18 8 20 6.5 20 4.5C20 3.12 18.88 2 17.5 2C16.12 2 15 3.12 15 4.5L12 8"/><path d="M6 8C6 8 4 6.5 4 4.5C4 3.12 5.12 2 6.5 2C7.88 2 9 3.12 9 4.5L12 8"/><path d="M12 8L12 14"/><path d="M8 12C5 12 3 14 3 17C3 20 6 22 12 22C18 22 21 20 21 17C21 14 19 12 16 12"/></svg></div>
+          <h3>Grace, not guilt</h3>
+          <p>No streak counters. No shame for skipping a day. Just a quiet place to return to whenever you're ready.</p>
         </div>
-    </footer>
+        <div class="card problem__card">
+          <div class="problem__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#E5A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+          <h3>Built from Scripture</h3>
+          <p>Every insight, every devotional, every growth path draws directly from biblical text — not pop psychology.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+  <!-- Framework: 12 Types -->
+  <section class="framework section--cream" id="types">
+    <div class="container">
+      <span class="label">The Framework</span>
+      <h2>12 Types. 3 Orientations. 4 Expressions.</h2>
+      <hr class="divider">
+      <p class="framework__intro">Your spiritual personality sits at the intersection of an orientation — how you relate to God — and an expression — how that relationship shows up in the world.</p>
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+      <div class="type-grid">
+        <!-- Devoted -->
+        <a href="/types/artisan" class="type-card" aria-label="The Artisan — Building with sacred purpose">
+          <img src="/images/types/artisan.png" alt="The Artisan spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--devoted">Devoted</span>
+            <h3 class="type-card__name">The Artisan</h3>
+            <p class="type-card__tagline">Building with sacred purpose</p>
+          </div>
+        </a>
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        <a href="/types/sage" class="type-card" aria-label="The Sage — Seeking wisdom in stillness">
+          <img src="/images/types/sage.png" alt="The Sage spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--devoted">Devoted</span>
+            <h3 class="type-card__name">The Sage</h3>
+            <p class="type-card__tagline">Seeking wisdom in stillness</p>
+          </div>
+        </a>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+        <a href="/types/shepherd" class="type-card" aria-label="The Shepherd — Leading with compassionate care">
+          <img src="/images/types/shepherd.png" alt="The Shepherd spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--devoted">Devoted</span>
+            <h3 class="type-card__name">The Shepherd</h3>
+            <p class="type-card__tagline">Leading with compassionate care</p>
+          </div>
+        </a>
 
-        // Observe elements for animation
-        document.querySelectorAll('.problem-card, .step, .type-card, .feature-card, .dimension-card, .report-feature, .report-preview-mockup').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
+        <a href="/types/prophet" class="type-card" aria-label="The Prophet — Speaking truth with courage">
+          <img src="/images/types/prophet.png" alt="The Prophet spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--devoted">Devoted</span>
+            <h3 class="type-card__name">The Prophet</h3>
+            <p class="type-card__tagline">Speaking truth with courage</p>
+          </div>
+        </a>
+
+        <!-- Connected -->
+        <a href="/types/server" class="type-card" aria-label="The Server — Meeting needs through action">
+          <img src="/images/types/server.png" alt="The Server spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--connected">Connected</span>
+            <h3 class="type-card__name">The Server</h3>
+            <p class="type-card__tagline">Meeting needs through action</p>
+          </div>
+        </a>
+
+        <a href="/types/teacher" class="type-card" aria-label="The Teacher — Sharing wisdom with others">
+          <img src="/images/types/teacher.png" alt="The Teacher spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--connected">Connected</span>
+            <h3 class="type-card__name">The Teacher</h3>
+            <p class="type-card__tagline">Sharing wisdom with others</p>
+          </div>
+        </a>
+
+        <a href="/types/companion" class="type-card" aria-label="The Companion — Walking alongside others">
+          <img src="/images/types/companion.png" alt="The Companion spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--connected">Connected</span>
+            <h3 class="type-card__name">The Companion</h3>
+            <p class="type-card__tagline">Walking alongside others</p>
+          </div>
+        </a>
+
+        <a href="/types/guardian" class="type-card" aria-label="The Guardian — Protecting what matters most">
+          <img src="/images/types/guardian.png" alt="The Guardian spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--connected">Connected</span>
+            <h3 class="type-card__name">The Guardian</h3>
+            <p class="type-card__tagline">Protecting what matters most</p>
+          </div>
+        </a>
+
+        <!-- Becoming -->
+        <a href="/types/pioneer" class="type-card" aria-label="The Pioneer — Charting new spiritual territory">
+          <img src="/images/types/pioneer.png" alt="The Pioneer spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--becoming">Becoming</span>
+            <h3 class="type-card__name">The Pioneer</h3>
+            <p class="type-card__tagline">Charting new spiritual territory</p>
+          </div>
+        </a>
+
+        <a href="/types/seeker" class="type-card" aria-label="The Seeker — Exploring mysteries of faith">
+          <img src="/images/types/seeker.png" alt="The Seeker spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--becoming">Becoming</span>
+            <h3 class="type-card__name">The Seeker</h3>
+            <p class="type-card__tagline">Exploring mysteries of faith</p>
+          </div>
+        </a>
+
+        <a href="/types/disciple" class="type-card" aria-label="The Disciple — Growing through community">
+          <img src="/images/types/disciple.png" alt="The Disciple spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--becoming">Becoming</span>
+            <h3 class="type-card__name">The Disciple</h3>
+            <p class="type-card__tagline">Growing through community</p>
+          </div>
+        </a>
+
+        <a href="/types/wrestler" class="type-card" aria-label="The Wrestler — Wrestling with doubt toward authentic faith">
+          <img src="/images/types/wrestler.png" alt="The Wrestler spiritual personality type" class="type-card__portrait" loading="lazy">
+          <div>
+            <span class="badge badge--becoming">Becoming</span>
+            <h3 class="type-card__name">The Wrestler</h3>
+            <p class="type-card__tagline">Wrestling with doubt toward authentic faith</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center mt-2xl">
+        <a href="/types" class="btn btn--outline">Explore all 12 types</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features-section">
+    <div class="container">
+      <div class="text-center">
+        <span class="label">What You Get</span>
+        <h2>Everything you need, nothing you don't</h2>
+        <hr class="divider">
+      </div>
+      <div class="features__grid">
+        <div class="feature">
+          <div class="feature__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#E5A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+          <h3>50-Question Assessment</h3>
+          <p>Carefully designed questions reveal your unique spiritual personality — not a BuzzFeed quiz.</p>
+        </div>
+        <div class="feature">
+          <div class="feature__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#E5A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+          <h3>504 Daily Devotionals</h3>
+          <p>42 devotionals per type, each tailored to how you specifically connect with God.</p>
+        </div>
+        <div class="feature">
+          <div class="feature__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#E5A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 12h14l3-12"/><path d="M5 16l-2 4h18l-2-4"/><circle cx="7.5" cy="10" r="1.5"/><circle cx="16.5" cy="10" r="1.5"/><circle cx="12" cy="7" r="1.5"/></svg></div>
+          <h3>Biblical Archetype</h3>
+          <p>Meet the biblical figure who shares your spiritual DNA and learn from their journey.</p>
+        </div>
+        <div class="feature">
+          <div class="feature__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#E5A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+          <h3>Private Journal</h3>
+          <p>Capture reflections alongside your devotionals. Your thoughts stay on your device.</p>
+        </div>
+        <div class="feature">
+          <div class="feature__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#E5A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></div>
+          <h3>Premium Report</h3>
+          <p>A deep-dive PDF exploring your gifts, growth edges, prayer practices, and cross-type insights.</p>
+        </div>
+        <div class="feature">
+          <div class="feature__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#E5A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+          <h3>No Guilt. Ever.</h3>
+          <p>No streaks, no notifications shaming you. Come back when you're ready — your lamp stays lit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <span class="label">Begin</span>
+      <h2>Start your journey</h2>
+      <hr class="divider">
+      <p>The assessment takes about 10 minutes. Your first devotional is waiting on the other side.</p>
+      <a href="https://apps.apple.com/app/id6756659854" class="btn btn--primary btn--lg">Download Free on the App Store</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand-col">
+          <span class="footer__brand">Lamplit Path</span>
+          <p class="footer__tagline">Discover your spiritual personality type. 12 types, 504 personalized devotionals, zero guilt.</p>
+          <a href="https://apps.apple.com/app/id6756659854" class="app-store-badge" aria-label="Download on the App Store">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" loading="lazy">
+          </a>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Discover</h4>
+          <ul class="footer__col-links">
+            <li><a href="/types">The 12 Types</a></li>
+            <li><a href="/types/sage">The Sage</a></li>
+            <li><a href="/types/shepherd">The Shepherd</a></li>
+            <li><a href="/types/seeker">The Seeker</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__col-title">App</h4>
+          <ul class="footer__col-links">
+            <li><a href="https://apps.apple.com/app/id6756659854">Download</a></li>
+            <li><a href="/types">Assessment</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Legal</h4>
+          <ul class="footer__col-links">
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Hermes Horizon. All rights reserved.</span>
+        <ul class="footer__bottom-links">
+          <li><a href="/privacy">Privacy</a></li>
+          <li><a href="/terms">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
