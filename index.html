@@ -439,11 +439,14 @@
       }
 
       .hero h1 {
-        font-size: clamp(2rem, 8vw, 3rem);
+        font-size: 2.5rem;
+        line-height: 1.1;
+        margin-bottom: var(--space-md);
       }
 
       .hero__subtitle {
-        font-size: 1.0625rem;
+        font-size: 1.125rem;
+        line-height: 1.7;
         margin-bottom: var(--space-xl);
       }
 
@@ -453,19 +456,28 @@
         gap: var(--space-md);
       }
 
+      .hero__ctas .btn--lg {
+        font-size: 1rem;
+        padding: 1.125rem var(--space-xl);
+      }
+
       .hero__stats {
         gap: var(--space-lg);
       }
 
       .hero__stat strong {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
       }
 
       .hero__stat span {
-        font-size: 0.6875rem;
+        font-size: 0.75rem;
       }
 
-      /* Type showcase: 2x2 grid on tablet */
+      /* Type showcase: 2x2 grid */
+      .type-showcase h2 {
+        font-size: 1.625rem;
+      }
+
       .type-showcase__row {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -477,7 +489,11 @@
         height: 100px;
       }
 
-      /* Problem & features: stack */
+      .type-showcase__name {
+        font-size: 1.0625rem;
+      }
+
+      /* Problem & features: stack with readable text */
       .problem__grid,
       .features__grid {
         grid-template-columns: 1fr;
@@ -489,9 +505,31 @@
         padding: var(--space-xl);
       }
 
+      .problem__card h3,
+      .feature h3 {
+        font-size: 1.1875rem;
+      }
+
+      .problem__card p,
+      .feature p {
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
       /* Framework section */
       .framework__intro {
-        font-size: 1rem;
+        font-size: 1.0625rem;
+        line-height: 1.7;
+      }
+
+      /* CTA section */
+      .cta h2 {
+        font-size: 1.75rem;
+      }
+
+      .cta p {
+        font-size: 1.0625rem;
+        line-height: 1.7;
       }
     }
 
@@ -501,10 +539,14 @@
       }
 
       .hero h1 {
-        font-size: 1.875rem;
+        font-size: 2.125rem;
       }
 
-      /* Type showcase: still 2-col but smaller */
+      .hero__subtitle {
+        font-size: 1.0625rem;
+      }
+
+      /* Type showcase: still 2-col but tighter */
       .type-showcase__row {
         gap: var(--space-lg);
       }
